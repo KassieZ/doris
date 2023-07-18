@@ -61,15 +61,15 @@ vi /etc/security/limits.conf
 * hard nofile 65536
 ````
 
-##### Clock synchronization
+##### Clock Synchronization
 
 The metadata in Doris requires a time precision of less than 5000ms, so all machines in all clusters need to synchronize their clocks to avoid service exceptions caused by inconsistencies in metadata caused by clock problems.
 
-##### Close the swap partition
+##### Close the Swap Partition
 
 The Linux swap partition can cause serious performance problems for Doris, so you need to disable the swap partition before installation.
 
-##### Linux file system
+##### Linux File System
 
 Both ext4 and xfs file systems are supported.
 
@@ -216,7 +216,7 @@ See the `lower_case_table_names` section in [Variables](../advanced/variables.md
 
   `storage_root_path=/home/disk1/doris,medium:HDD;/home/disk2/doris,medium:SSD`
 
-  **illustrate**
+  **Illustrate**
 
     - /home/disk1/doris,medium:HDD: Indicates that the directory stores cold data;
     - /home/disk2/doris,medium:SSD: Indicates that the directory stores hot data;
@@ -269,11 +269,11 @@ Broker is deployed as a plug-in, which is independent of Doris. If you need to i
 
 	You can modify the configuration in the corresponding broker/conf/directory configuration file.
 
-* Start Broker
+* Start broker
 
 	`bin/start_broker.sh --daemon`
 
-* Add Broker
+* Add broker
 
 	To let Doris FE and BE know which nodes Broker is on, add a list of Broker nodes by SQL command.
 
@@ -283,7 +283,7 @@ Broker is deployed as a plug-in, which is independent of Doris. If you need to i
 
 	`broker\_host` is the Broker node ip;  `broker_ipc_port` is in conf/apache_hdfs_broker.conf in the Broker configuration file.
 
-* View Broker status
+* View broker status
 
 	Connect any started FE using mysql-client and execute the following command to view Broker status: `SHOW PROC '/brokers';`
 
@@ -291,7 +291,7 @@ Broker is deployed as a plug-in, which is independent of Doris. If you need to i
 
 ## FAQ
 
-### Process-Related Questions
+### Process-related Questions
 
 1. How can we know whether the FE process startup succeeds?
 

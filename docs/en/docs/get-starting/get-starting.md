@@ -55,7 +55,7 @@ cd apache-doris-x.x.x/fe
 
 Modify the FE configuration file `conf/fe.conf`, here we mainly modify two parameters: `priority_networks` and `meta_dir`, if you need more optimized configuration, please refer to [FE parameter configuration](../admin-manual/config/fe-config.md) for instructions on how to adjust them.
 
-1. add priority_networks parameter
+1. Add priority_networks parameter
 
 ```
 priority_networks=172.23.16.0/24
@@ -159,7 +159,7 @@ ReplayedJournalId: 49292
 
 1. If the IsMaster, Join and Alive columns are true, the node is normal.
 
-#### Communicate with the Server over an Encrypted Connection
+#### Communicate with the Server Over an Encrypted Connection
 
 Doris supports SSL-based encrypted connections. It currently supports TLS1.2 and TLS1.3 protocols. Doris' SSL mode can be enabled through the following configuration:
 Modify the FE configuration file `conf/fe.conf` and add `enable_ssl = true`.

@@ -25,7 +25,7 @@ under the License.
 -->
 
 
-# User Guide
+# User Guidelines
 
 Doris uses MySQL protocol for communication. Users can connect to Doris clusters through MySQL Client or MySQL JDBC. MySQL Client 5.1 or newer versions are recommended because they support user names of more than 16 characters. This topic walks you through how to use Doris with the example of MySQL Client.
 

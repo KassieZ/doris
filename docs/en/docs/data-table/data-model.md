@@ -539,14 +539,14 @@ In other databases, such queries return results quickly. Because in actual imple
 
 For the previous example:
 
-**batch 1**
+**Batch 1**
 
 | user\_id | date       | cost |
 | -------- | ---------- | ---- |
 | 10001    | 2017-11-20 | 50   |
 | 10002    | 2017-11-21 | 39   |
 
-**batch 2**
+**Batch 2**
 
 | user\_id | date       | cost |
 | -------- | ---------- | ---- |
@@ -584,7 +584,7 @@ Another method is to add a `cound` column of value 1 but aggregation type of REP
 
 The Merge on Write implementation in the Unique Model does not impose the same limitation as the Aggregate Model. In Merge on Write, the model adds a  `delete bitmap` for each imported rowset to mark the data being overwritten or deleted. With the previous example, after Batch 1 is imported, the data status will be as follows:
 
-**batch 1**
+**Batch 1**
 
 | user_id | date       | cost | delete bit |
 | ------- | ---------- | ---- | ---------- |
@@ -593,14 +593,14 @@ The Merge on Write implementation in the Unique Model does not impose the same l
 
 After Batch 2 is imported, the duplicate rows in the first batch will be marked as deleted, and the status of the two batches of data is as follows
 
-**batch 1**
+**Batch 1**
 
 | user_id | date       | cost | delete bit |
 | ------- | ---------- | ---- | ---------- |
 | 10001   | 2017-11-20 | 50   | **true**   |
 | 10002   | 2017-11-21 | 39   | false      |
 
-**batch 2**
+**Batch 2**
 
 | user\_id | date       | cost | delete bit |
 | -------- | ---------- | ---- | ---------- |

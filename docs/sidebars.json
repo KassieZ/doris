@@ -5,7 +5,7 @@
             "label": "Getting Started",
             "items": [
                 "get-starting/get-starting",
-		"get-starting/doris-introduction"
+                "get-starting/doris-introduction"
             ]
         },
         {
@@ -21,7 +21,7 @@
                         "install/construct-docker/deploy-docker-cluster"
                     ]
                 },
-                "install/k8s_deploy",
+                "install/k8s-deploy",
                 {
                     "type": "category",
                     "label": "Source Code Compilation",
