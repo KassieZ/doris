@@ -172,7 +172,7 @@ As you can see, the base table tbl1 also automatically added k4, k5 columns. Tha
 
 At the same time, columns that already exist in the Base table are not allowed to be added to Rollup. If you need to do this, you can re-create a Rollup with the new columns and then delete the original Rollup.
 
-### Modify Key column
+### Modify Key Column
 
 Modifying the Key column of a table is done through the `key` keyword. Let's take a look at an example below.
 

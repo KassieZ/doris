@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Compiling with LDB toolchain",
+    "title": "Compiling with LDB Toolchain",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Compile With ldb-toolchain
+# Compile With ldb Toolchain
 
 This topic is about how to compile Doris using the LDB toolchain. This method is an alternative to the Docker method so developers and users without a Docker environment can compile Doris from source.
 The LDB toolchain version currently recommended by Doris is 0.17, which contains clang-16 and gcc-11.
@@ -127,7 +127,7 @@ If supported, execute `sh build.sh` directly.
 
 This script will compile the third-party libraries first and then the Doris components (FE, BE) later. The compiled output will be in the `output/` directory.
 
-## Precompile the Third-Party Binaries
+## Precompile the Third-party Binaries
 
 The `build.sh` script will first compile the third-party dependencies. You can also directly download the precompiled three-party binaries:
 

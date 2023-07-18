@@ -39,7 +39,7 @@ The Colocation Join function has undergone a revision, and its design and use ar
 * Colocation Group (CG): A CG contains one or more tables. Tables within the same group have the same Colocation Group Schema and the same data fragmentation distribution.
 * Colocation Group Schema (CGS): Used to describe table in a CG and general Schema information related to Colocation. Including bucket column type, bucket number and copy number.
 
-## Principle
+## Principles
 
 The Colocation Join function is to make a CG of a set of tables with the same CGS. Ensure that the corresponding data fragments of these tables will fall on the same BE node. When tables in CG perform Join operations on bucket columns, local data Join can be directly performed to reduce data transmission time between nodes.
 
@@ -73,9 +73,9 @@ After fixing the number of bucket columns and buckets, the tables in the same CG
 
 The data of all tables in CG will be uniformly distributed according to the above rules, which ensures that the data with the same barrel column value are on the same BE node, and local data Join can be carried out.
 
-## Usage
+## Usages
 
-### Establishment of tables
+### Establishment of Tables
 
 When creating a table, you can specify the attribute `"colocate_with"="group_name"` in `PROPERTIES`, which means that the table is a Colocation Join table and belongs to a specified Colocation Group.
 
@@ -112,7 +112,7 @@ Cross-Database Colocate Join can be realized by creating a Global Group.
 
 </version>
 
-### Delete table
+### Delete Table
 
 When the last table in Group is deleted completely (deleting completely means deleting from the recycle bin). Usually, when a table is deleted by the `DROP TABLE` command, it will be deleted after the default one-day stay in the recycle bin, and the group will be deleted automatically.
 
@@ -175,7 +175,7 @@ You can also delete the Colocation attribute of a table by following commands:
 
 `ALTER TABLE tbl SET ("colocate_with" = "");`
 
-### Other related operations
+### Other Related Operations
 
 When an ADD PARTITION is added to a table with a Colocation attribute and the number of copies is modified, Doris checks whether the modification violates the Colocation Group Schema and rejects it if it does.
 
@@ -376,7 +376,7 @@ The API is implemented on the FE side and accessed using `fe_host: fe_http_port`
     GET /api/colocate
     
     Return the internal Colocation info in JSON format:
-
+    
     {
         "msg": "success",
       "code": 0,

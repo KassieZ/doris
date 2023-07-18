@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Pipeline execution engine",
+    "title": "Pipeline Execution Engine",
     "language": "en",
     "toc_min_heading_level": 2,
     "toc_max_heading_level": 4
@@ -26,7 +26,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Pipeline execution engine
+# Pipeline Execution Engine
 
 <version since="2.0.0"></version>
 
@@ -34,7 +34,7 @@ Pipeline execution engine is an experimental feature added by Doris in version 2
 
 Its specific design, implementation and effects can be found in [DSIP-027]([DSIP-027: Support Pipeline Exec Engine - DORIS - Apache Software Foundation](https://cwiki.apache.org/confluence/display/DORIS/DSIP-027%3A+Support+Pipeline+Exec+Engine))。
 
-## Principle
+## Principles
 
 The current Doris SQL execution engine is designed based on the traditional volcano model, which has the following problems in a single multi-core scenario：
 * Inability to take full advantage of multi-core computing power to improve query performance,**most scenarios require manual setting of parallelism** for performance tuning, which is almost difficult to set in production environments.
@@ -59,7 +59,7 @@ This improves the efficiency of CPU execution on mixed-load SQL and enhances the
 
 ## Usage
 
-### Set session variable
+### Set Session Variables
 
 #### enable_pipeline_engine
 

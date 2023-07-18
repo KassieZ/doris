@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Compilation on macOS",
+    "title": "Compilation on MacOS",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Compile With macOS
+# Compile With MacOS
 
 This topic is about how to compile Doris from source with macOS (both x86_64 and arm64).
 
@@ -54,18 +54,18 @@ This topic is about how to compile Doris from source with macOS (both x86_64 and
     ```shell
     cd thirdparty
     rm -rf installed
-
+    
     # Intel chips
     curl -L https://github.com/apache/doris-thirdparty/releases/download/automation/doris-thirdparty-prebuilt-darwin-x86_64.tar.xz \
         -o - | tar -Jxf -
-
+    
     # Apple Silicon chips
     curl -L https://github.com/apache/doris-thirdparty/releases/download/automation/doris-thirdparty-prebuilt-darwin-arm64.tar.xz \
         -o - | tar -Jxf -
-
+    
     # Make sure that protoc and thrift can run successfully.
     cd installed/bin
-
+    
     ./protoc --version
     ./thrift --version
     ```

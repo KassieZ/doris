@@ -1,6 +1,6 @@
 ---
 {
-    "title": "MySql load",
+    "title": "MySql Load",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Mysql load
+# Mysql Load
 <version since="dev">
 
 This is an stand syntax of MySql [LOAD DATA](https://dev.mysql.com/doc/refman/8.0/en/load-data.html) for user to load local file.
@@ -50,13 +50,13 @@ The MySql Load are similar with Stream Load. Both import local files into the Do
  5. After the data transfer on the MySQL client side is completed, FE waits for the StreamLoad to complete, and displays the import success or failure information to the client side.
 
 
-## Support data format
+## Support Data Format
 
 MySql Load currently only supports data formats: CSV (text).
 
-## Basic operations
+## Basic Operations
 
-### client connection
+### Client Connection
 ```bash
 mysql --local-infile  -h 127.0.0.1 -P 9030 -u root -D testdb
 ```
@@ -65,11 +65,11 @@ Notice that if you wants to use mysql load, you must connect doris server with `
 If you're use jdbc to connect doris, you must add property named `allowLoadLocalInfile=true` in jdbc url.
 
 
-### Create test table
+### Create Test Table
 ```sql
  CREATE TABLE testdb.t1 (pk INT, v1 INT SUM) AGGREGATE KEY (pk) DISTRIBUTED BY hash (pk) PROPERTIES ('replication_num' = '1');
- ```
- ### import file from client node
+```
+ ### Import File from Client Node
  Suppose there is a CSV file named 'client_local.csv 'on the current path of the client side, which will be imported into the test table'testdb.t1' using the MySQL LOAD syntax.
 
 ```sql
@@ -94,7 +94,7 @@ PROPERTIES ("strict_mode" = "true")
 8. Column mapping syntax, see the column mapping chapter of [Imported Data Transformation](../import-scenes/load-data-convert.md) for specific parameters
 9. `PROPERTIES` is the configuration of import, please refer to the [MySQL Load](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/MYSQL-LOAD.md) command manual for specific properties.
 
-### import file from fe server node
+### Import Files from FE Server Node
 Assuming that the '/root/server_local.csv' path on the FE node is a CSV file, use the MySQL client side to connect to the corresponding FE node, and then execute the following command to import data into the test table.
 
 ```sql
@@ -113,7 +113,7 @@ PROPERTIES ("strict_mode" = "true")
 2. FE will have multi-nodes, and importing server level files can only import FE nodes connected by the client side, and cannot import files local to other FE nodes.
 3. Server side load was disabled by default. Enable it by setting `mysql_load_server_secure_path` with a secure path. All the load file should be under this path.
 
-### Return result
+### Return Result
 Since MySQL load is a synchronous import method, the imported results are returned to the user through SQL syntax.
 If the import fails, a specific error message will be displayed. If the import is successful, the number of imported rows will be displayed.
 
@@ -122,7 +122,7 @@ Query OK, 1 row affected (0.17 sec)
 Records: 1 Deleted: 0 Skipped: 0 Warnings: 0
 ```
 
-### Error result
+### Error Result
 If mysql load process goes wrong, it will show the error in the client as below:
 ```text
 ERROR 1105 (HY000): errCode = 2, detailMessage = [INTERNAL_ERROR]too many filtered rows with load id b612907c-ccf4-4ac2-82fe-107ece655f0f

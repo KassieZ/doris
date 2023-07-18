@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Variable",
+    "title": "Variables",
     "language": "en"
 }
 ---
@@ -24,13 +24,13 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Variable
+# Variables
 
 This document focuses on currently supported variables.
 
 Variables in Doris refer to variable settings in MySQL. However, some of the variables are only used to be compatible with some MySQL client protocols, and do not produce their actual meaning in the MySQL database.
 
-## Variable setting and viewing
+## Variable Setting and Viewing
 
 ### View
 
@@ -92,7 +92,7 @@ SET exec_mem_limit = 10 * 1024 * 1024 * 1024;
 SET forward_to_master = concat('tr', 'u', 'e');
 ```
 
-### Set variables in the query statement
+### Set Variables in the Query Statement
 
 In some scenarios, we may need to set variables specifically for certain queries.
 The SET_VAR hint sets the session value of a system variable temporarily (for the duration of a single statement). Examples:
@@ -104,7 +104,7 @@ SELECT /*+ SET_VAR(query_timeout = 1, enable_partition_cache=true) */ sleep(3);
 
 Note that the comment must start with /*+ and can only follow the SELECT.
 
-## Supported variables
+## Supported Variables
 
 * `SQL_AUTO_IS_NULL`
 
@@ -684,7 +684,7 @@ Translated with www.DeepL.com/Translator (free version)
 * Related semantics
 
      `query_timeout` is used to control the timeout of all statements, and `insert_timeout` is specifically used to control the timeout of the INSERT statement. When the INSERT statement is executed, the timeout time will take
-    
+        
      The maximum value of `query_timeout` and `insert_timeout`.
 
      `query_timeout` and `insert_timeout` in `user property` can only be specified by the ADMIN user for the target user, and its semantics is to change the default timeout time of the specified user, and it does not have `quota` semantics.

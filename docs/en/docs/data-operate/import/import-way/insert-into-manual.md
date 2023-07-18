@@ -35,7 +35,7 @@ The main Insert Into command contains the following two kinds;
 
 The second command is for Demo only, not in a test or production environment.
 
-## Import operations and load results
+## Import Operations and Load Results
 
 The Insert Into command needs to be submitted through MySQL protocol. Creating an import request returns the import result synchronously.
 
@@ -181,7 +181,7 @@ This command returns the insert results and the details of the corresponding tra
 
 ## Relevant System Configuration
 
-### FE configuration
+### FE Configuration
 
 - time out
 
@@ -204,13 +204,13 @@ This command returns the insert results and the details of the corresponding tra
 
 ## Best Practices
 
-### Application scenarios
+### Application Scenarios
 
 1. Users want to import only a few false data to verify the functionality of Doris system. The grammar of INSERT INTO VALUES is suitable at this time.
 2. Users want to convert the data already in the Doris table into ETL and import it into a new Doris table, which is suitable for using INSERT INTO SELECT grammar.
 3. Users can create an external table, such as MySQL external table mapping a table in MySQL system. Or create Broker external tables to map data files on HDFS. Then the data from the external table is imported into the Doris table for storage through the INSERT INTO SELECT grammar.
 
-### Data volume
+### Data Volume
 
 Insert Into has no limitation on the amount of data, and large data imports can also be supported. However, Insert Into has a default timeout time, and the amount of imported data estimated by users is too large, so it is necessary to modify the system's Insert Into import timeout time.
 
@@ -219,7 +219,7 @@ Import data volume = 36G or less than 3600s*10M/s
 Among them, 10M/s is the maximum import speed limit. Users need to calculate the average import speed according to the current cluster situation to replace 10M/s in the formula.
 ```
 
-### Complete examples
+### Complete Examples
 
 Users have a table store sales in the database sales. Users create a table called bj store sales in the database sales. Users want to import the data recorded in the store sales into the new table bj store sales. The amount of data imported is about 10G.
 
@@ -233,7 +233,7 @@ Order large sales schedule:
 
 Cluster situation: The average import speed of current user cluster is about 5M/s
 
-- Step1: Determine whether you want to modify the default timeout of Insert Into
+- Step 1: Determine whether you want to modify the default timeout of Insert Into
 
   ```text
   Calculate the approximate time of import
@@ -243,7 +243,7 @@ Cluster situation: The average import speed of current user cluster is about 5M/
   insert_load_default_timeout_second = 2000
   ```
 
-- Step2: Create Import Tasks
+- Step 2: Create Import Tasks
 
   Since users want to ETL data from a table and import it into the target table, they should use the Insert in query\stmt mode to import it.
 
@@ -259,6 +259,6 @@ Cluster situation: The average import speed of current user cluster is about 5M/
 
   The causes of errors are usually: source data column length exceeds destination data column length, column type mismatch, partition mismatch, column order mismatch, etc. When it's still impossible to check for problems. At present, it is only recommended that the SELECT command in the Insert Into statement be run to export the data to a file, and then import the file through Stream load to see the specific errors.
 
-## more help
+## More Help
 
 For more detailed syntax and best practices used by insert into, see [insert](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Manipulation/INSERT.md) command manual, you can also enter `HELP INSERT` in the MySql client command line for more help information.

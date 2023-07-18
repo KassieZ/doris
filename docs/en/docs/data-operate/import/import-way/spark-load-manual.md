@@ -34,13 +34,13 @@ If users do not have the resources of Spark cluster and want to complete the mig
 
 Spark load is an asynchronous load method. Users need to create spark type load job by MySQL protocol and view the load results by `show load`.
 
-## Applicable scenarios
+## Applicable Scenarios
 
 * The source data is in a file storage system that spark can access, such as HDFS.
 
 * The data volume ranges from tens of GB to TB.
 
-## Explanation of terms
+## Explanation of Terms
 
 1. Spark ETL: in the load process, it is mainly responsible for ETL of data, including global dictionary construction (bitmap type), partition, sorting, aggregation, etc.
 
@@ -48,9 +48,9 @@ Spark load is an asynchronous load method. Users need to create spark type load 
 
 3. Global dictionary: it stores the data structure from the original value to the coded value. The original value can be any data type, while the encoded value is an integer. The global dictionary is mainly used in the scene of precise de duplication precomputation.
 
-## Basic principles
+## Basic Principles
 
-### Basic process
+### Basic Process
 
 The user submits spark type load job by MySQL client, Fe records metadata and returns that the user submitted successfully.
 
@@ -92,15 +92,15 @@ The implementation of spark load task is mainly divided into the following five 
 
 ```
 
-## Global dictionary
+## Global Dictionary
 
-### Applicable scenarios
+### Applicable Scenarios
 
 At present, the bitmap column in Doris is implemented using the class library '`roaingbitmap`', while the input data type of '`roaringbitmap`' can only be integer. Therefore, if you want to pre calculate the bitmap column in the import process, you need to convert the type of input data to integer.
 
 In the existing Doris import process, the data structure of global dictionary is implemented based on hive table, which stores the mapping from original value to encoded value.
 
-### Build process
+### Build Process
 
 1. Read the data from the upstream data source and generate a hive temporary table, which is recorded as `hive_table`.
 
@@ -114,9 +114,9 @@ In the existing Doris import process, the data structure of global dictionary is
 
 6. `hive_table` will be read by the next data preprocessing process and imported into Doris after calculation.
 
-## Data preprocessing (DPP)
+## Data Preprocessing (DPP)
 
-### Basic process
+### Basic Process
 
 1. Read data from the data source. The upstream data source can be HDFS file or hive table.
 
@@ -134,9 +134,9 @@ In the existing Doris import process, the data structure of global dictionary is
 
 Spark supports loading hive-generated bitmap data directly into Doris, see [hive-bitmap-udf documentation](../../../ecosystem/hive-bitmap-udf.md)
 
-## Basic operation
+## Basic Operation
 
-### Configure ETL cluster
+### Configure ETL Cluster
 
 As an external computing resource, spark is used to complete ETL work in Doris. In the future, there may be other external resources that will be used in Doris, such as spark / GPU for query, HDFS / S3 for external storage, MapReduce for ETL, etc. Therefore, we introduce resource management to manage these external resources used by Doris.
 
@@ -175,7 +175,7 @@ REVOKE USAGE_PRIV ON RESOURCE resource_name FROM user_identity
 REVOKE USAGE_PRIV ON RESOURCE resource_name FROM ROLE role_name
 ```
 
-**Create resource**
+**Create Resource**
 
 `resource_name` is the name of the spark resource configured in Doris.
 
@@ -202,7 +202,7 @@ REVOKE USAGE_PRIV ON RESOURCE resource_name FROM ROLE role_name
     - `spark.hadoop.dfs.namenode.rpc-address.nameservices01.mynamenode1`, fully qualified RPC address for each NameNode.
     - `spark.hadoop.dfs.namenode.rpc-address.nameservices01.mynamenode2`, fully qualified RPC address for each NameNode.
     - `spark.hadoop.dfs.client.failover.proxy.provider` = `org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider`, set the implementation class.
--`working_dir`: directory used by ETL. Spark is required when used as an ETL resource. For example: `hdfs://host :port/tmp/doris`.
+    -`working_dir`: directory used by ETL. Spark is required when used as an ETL resource. For example: `hdfs://host :port/tmp/doris`.
 - `broker.hadoop.security.authentication`: Specify the authentication method as kerberos.
 - `broker.kerberos_principal`: Specify the principal of kerberos.
 - `broker.kerberos_keytab`: Specify the path to the keytab file for kerberos. The file must be an absolute path to a file on the server where the broker process is located. And can be accessed by the Broker process.
@@ -350,7 +350,7 @@ REVOKE USAGE_PRIV ON RESOURCE "spark0" FROM "user0"@"%";
 
 ```
 
-### Configure spark client
+### Configure Spark Client
 
 The Fe submits the spark task by executing the spark submit command. Therefore, it is necessary to configure the spark client for Fe. It is recommended to use the official version of spark 2 above 2.4.3, [download spark here](https://archive.apache.org/dist/spark/). After downloading, please follow the steps to complete the following configuration.
 
@@ -378,7 +378,7 @@ __spark_repository__spark0/
 
 In addition to spark dependency (named by `spark-2x.zip` by default), Fe will also upload DPP's dependency package to the remote repository. If all the dependency files submitted by spark load already exist in the remote repository, then there is no need to upload dependency, saving the time of repeatedly uploading a large number of files each time.
 
-### Configure yarn client
+### Configure Yarn Client
 
 The Fe obtains the running application status and kills the application by executing the yarn command. Therefore, you need to configure the yarn client for Fe. It is recommended to use the official version of Hadoop above 2.5.2, [download hadoop](https://archive.apache.org/dist/hadoop/common/). After downloading, please follow the steps to complete the following configuration.
 
@@ -714,17 +714,17 @@ Display the detailed running status of some jobs, which will be updated when ETL
 
 Copy this url to the browser and jump to the web interface of the corresponding application.
 
-### View spark launcher commit log
+### View Spark Launcher Commit Log
 
 Sometimes users need to view the detailed logs generated during the spark submission process. The logs are saved in the `log/spark_launcher_log` under the Fe root directory named as `spark_launcher_{load_job_id}_{label}.log`. The log will be saved in this directory for a period of time. When the load information in Fe metadata is cleaned up, the corresponding log will also be cleaned. The default saving log time is 3 days.
 
-### cancel load
+### Cancel Load
 
 When the spark load job status is not cancelled or finished, it can be manually cancelled by the user. When canceling, you need to specify the label to cancel the load job. The syntax of the cancel load command can be viewed by executing `help cancel load`. 
 
-## Related system configuration
+## Related System Configuration
 
-### FE configuration
+### FE Configuration
 
 The following configuration belongs to the system level configuration of spark load, that is, the configuration for all spark load import tasks. Mainly through modification``` fe.conf ``` to modify the configuration value.
 
@@ -756,9 +756,9 @@ The path of the yarn binary executable file (`Fe/lib/yarn-client/Hadoop/bin/yarn
 
 The path to generate the yarn configuration file (`Fe/lib/yarn-config`).
 
-## Best practices
+## Best Practices
 
-### Application scenarios
+### Application Scenarios
 
 The most suitable scenario to use spark load is that the raw data is in the file system (HDFS), and the amount of data is tens of GB to TB. Stream load or broker load is recommended for small amount of data.
 

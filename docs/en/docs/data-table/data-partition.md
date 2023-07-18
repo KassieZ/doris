@@ -375,11 +375,11 @@ Compound partitioning is recommended for the following scenarios:
 
 Users can also choose for single partitioning, which is about HASH distribution.
 
-### PROPERTIES
+### Properties
 
 In the `PROPERTIES` section at the last of the CREATE TABLE statement, you can set the relevant parameters. Please see [CREATE TABLE](../sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE.md) for a detailed introduction.
 
-### ENGINE
+### Engine
 
 In this example, the ENGINE is of OLAP type, which is the default ENGINE type. In Doris, only the OALP ENGINE type is managed and stored by Doris. Other ENGINE types, such as MySQL, Broker, ES, are essentially mappings to tables in other external databases or systems to ensure that Doris can read the data. And Doris itself does not create, manage, or store any tables and data of non-OLAP ENGINE type.
 

@@ -33,7 +33,7 @@ The Binlog Load feature enables Doris to incrementally synchronize update operat
 * Filter query
 * Temporarily incompatible with DDL statements
 
-## Principle
+## Principles
 In the design of phase one, Binlog Load needs to rely on canal as an intermediate medium, so that canal can be pretended to be a slave node to get and parse the binlog on the MySQL master node, and then Doris can get the parsed data on the canal. This process mainly involves mysql, canal and Doris. The overall data flow is as follows:
 
 ```
@@ -197,7 +197,7 @@ COMMIT/*!*/;
 
 As shown above, each insert event contains modified data. During delete/update, an event can also contain multiple rows of data, making the binlog more compact.
 
-### Open GTID mode (Optional)
+### Open GTID Mode (Optional)
 
 A global transaction ID (global transaction identifier) identifies a transaction that has been committed on the master node, which is unique and valid in global. After binlog is enabled, the gtid will be written to the binlog file.
 
@@ -248,7 +248,7 @@ After downloading, please follow the steps below to complete the deployment.
 	canal.instance.dbUsername = canal
 	canal.instance.dbPassword = canal
 	```
-4. start up canal server
+4. Start up canal server
 
 	```
 	sh bin/startup.sh
@@ -485,7 +485,7 @@ You can use [STOP SYNC JOB](../../../sql-manual/sql-reference/Data-Manipulation-
 
 ## Related Parameters
 
-### Canal configuration
+### Canal Configuration
 
 * `canal.ip`
 
@@ -504,7 +504,7 @@ You can use [STOP SYNC JOB](../../../sql-manual/sql-reference/Data-Manipulation-
 	The default space occupied by an event at the canal end, default value is 1024 bytes. This value multiplied by `canal.instance.memory.buffer.size` is equal to the maximum space of the store. For example, if the queue length of the store is 16384, the space of the store is 16MB. However, the actual size of an event is not actually equal to this value, but is determined by the number of rows of data in the event and the length of each row of data. For example, the insert event of a table with only two columns is only 30 bytes, but the delete event may reach thousands of bytes. This is because the number of rows of delete event is usually more than that of insert event.
 
 
-### Fe configuration
+### Fe Configuration
 
 The following configuration belongs to the system level configuration of SyncJob. The configuration value can be modified in configuration file fe.conf.
 	

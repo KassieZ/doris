@@ -37,7 +37,7 @@ It's design, implementation can be referred to [ISSUE 4394](https://github.com/a
 * Left table: the left table in join query. Perform probe expr. The order can be adjusted by join reorder.
 * Right table: the right table in join query. Perform build expr The order can be adjusted by join reorder.
 
-## Principle
+## Principles
 The conventional distributed join methods supported by Doris is: `Shuffle Join, Broadcast Join`. Both of these join will lead to some network overhead.
 
 For example, there are join queries for table A and table B. the join method is hashjoin. The cost of different join types is as follows：
@@ -62,7 +62,7 @@ Therefore, compared with Broadcast Join and Shuffle Join, Bucket shuffle join ha
 
 ## Usage
 
-### Set session variable
+### Set Session Variable
 
 Set session variable `enable_bucket_shuffle_join` to `true`, FE will automatically plan queries that can be converted to Bucket Shuffle Join.
 
@@ -79,7 +79,7 @@ the above order of preference will not take effect.
 
 The session variable is set to `true` by default in version 0.14, while it needs to be set to `true` manually in version 0.13.
 
-### View the type of join
+### View the Type of Join
 
 You can use the `explain` command to check whether the join is a Bucket Shuffle Join
 
@@ -93,7 +93,7 @@ You can use the `explain` command to check whether the join is a Bucket Shuffle 
 
 The join type indicates that the join method to be used is：`BUCKET_SHUFFLE`。
 
-## Planning rules of Bucket Shuffle Join
+## Planning Rules of Bucket Shuffle Join
 
 In most scenarios, users only need to turn on the session variable by default to transparently use the performance improvement brought by this join method. However, if we understand the planning rules of Bucket Shuffle Join, we can use it to write more efficient SQL.
 

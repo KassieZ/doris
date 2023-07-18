@@ -37,7 +37,7 @@ This document describes the implementation principles, usage, and best practices
 * Task: RoutineLoadJob is divided by JobScheduler according to the rules.
 * TaskScheduler: Task Scheduler. Used to schedule the execution of a Task.
 
-## Principle
+## Principles
 
 ```
          +---------+
@@ -75,17 +75,17 @@ The JobScheduler in the FE continues to generate subsequent new Tasks based on t
 
 The entire routine load job completes the uninterrupted load of data by continuously generating new Tasks.
 
-## Kafka Routine load
+## Kafka Routine Load
 
 Currently we only support routine load from the Kafka system. This section details Kafka's routine use and best practices.
 
-### Usage restrictions
+### Usage Restrictions
 
 1. Support unauthenticated Kafka access and Kafka clusters certified by SSL.
 2. The supported message format is csv text or json format. Each message is a line in csv format, and the end of the line does not contain a ** line break.
 3. Kafka 0.10.0.0 (inclusive) or above is supported by default. If you want to use Kafka versions below 0.10.0.0 (0.9.0, 0.8.2, 0.8.1, 0.8.0), you need to modify the configuration of be, set the value of kafka_broker_version_fallback to be the older version, or directly set the value of property.broker.version.fallback to the old version when creating routine load. The cost of the old version is that some of the new features of routine load may not be available, such as setting the offset of the kafka partition by time.
 
-### Create a routine load task
+### Create a Routine Load Task
 
 The detailed syntax for creating a routine import task can be found in [CREATE ROUTINE LOAD](... /... /... /sql-manual/sql-reference/Data-Manipulation-Statements/Load/CREATE-ROUTINE-LOAD.md) after connecting to Doris  command manual, or execute `HELP ROUTINE LOAD;` for syntax help.
 
@@ -165,7 +165,7 @@ eg: user_address data format
 
 ```
     user_address|{"user_id":128787321878,"address":"朝阳区朝阳大厦XXX号","timestamp":1589191587}
- ```
+```
 eg: user_info data format
 ```
     user_info|{"user_id":128787321878,"name":"张三","age":18,"timestamp":1589191587}
@@ -261,7 +261,7 @@ eg: user_info data format
              "address":"Los Angeles, CA, USA",
              "timestamp":1589191587
          }
-   ```
+```
 
 Create the Doris data table to be imported
 
@@ -340,7 +340,7 @@ FROM KAFKA
 >
 >The partition field `dt` in the table is not in our data, but is converted in our Routine load statement by `dt=from_unixtime(timestamp, '%Y%m%d')`
 
-**strict mode import relationship with source data**
+**Strict mode import relationship with source data**
 
 Here is an example with a column type of TinyInt
 
@@ -376,7 +376,7 @@ Here is an example with the column type Decimal(1,0)
 
 Accessing an SSL-certified Kafka cluster requires the user to provide the certificate file (ca.pem) used to authenticate the Kafka Broker's public key. If the Kafka cluster also has client authentication enabled, the client's public key (client.pem), the key file (client.key), and the key password are also required. The required files need to be uploaded to Doris first via the `CREAE FILE` command, **and the catalog name is `kafka`**. See `HELP CREATE FILE;` for help with the `CREATE FILE` command. Here are some examples.
 
-1. uploading a file
+1. Uploading a file
 
 ```sql
 CREATE FILE "ca.pem" PROPERTIES("url" = "https://example_url/kafka-key/ca.pem", "catalog" = "kafka");
@@ -410,7 +410,7 @@ FROM KAFKA
 >
 >
 
-**Access the PLAIN certified Kafka cluster**
+**Access the PLAIN Certified Kafka Cluster**
 
 To access a Kafka cluster with PLAIN authentication enabled, you need to add the following configuration：
 
@@ -435,12 +435,12 @@ To access a Kafka cluster with PLAIN authentication enabled, you need to add the
         "property.sasl.username"="admin",
         "property.sasl.password"="admin"
     );
-
+    
     ```
 
 <version since="1.2">
 
-**Accessing a Kerberos-certified Kafka cluster**
+**Accessing a Kerberos-certified Kafka Cluster**
 
 Accessing a Kerberos-certified Kafka cluster. The following configurations need to be added:
 
@@ -481,7 +481,7 @@ Specific commands and examples to view the status of **tasks** running can be vi
 
 Only currently running tasks can be viewed; closed and unstarted tasks cannot be viewed.
 
-### Modify job properties
+### Modify Job Properties
 
 Users can modify jobs that have already been created. The details can be viewed with the `HELP ALTER ROUTINE LOAD;` command or see [ALTER ROUTINE LOAD](... /... /... /sql-manual/sql-reference/Data-Manipulation-Statements/Load/ALTER-ROUTINE-LOAD.md).
 
@@ -489,7 +489,7 @@ Users can modify jobs that have already been created. The details can be viewed 
 
 The user can control the stop, pause and restart of jobs with the `STOP/PAUSE/RESUME` commands. Help and examples can be viewed with the `HELP STOP ROUTINE LOAD;` `HELP PAUSE ROUTINE LOAD;` and `HELP RESUME ROUTINE LOAD;` commands.
 
-## Other notes
+## Other Notes
 
 1. The relationship between a routine import job and an ALTER TABLE operation
 
@@ -571,6 +571,6 @@ Some system configuration parameters can affect the use of routine import.
 
    FE configuration item, the default is 5 minutes, Doris rescheduling will only be attempted up to 3 times within the 5 minute period. If all 3 attempts fail, the current task is locked and no further scheduling is performed. However, manual recovery can be done through human intervention.
 
-## More help
+## More Help
 
 For more detailed syntax on the use of **Routine Load**, you can type `HELP ROUTINE LOAD` at the Mysql client command line for more help.

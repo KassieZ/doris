@@ -1,6 +1,6 @@
 ---
 {
-"title": "Compilation With Arm",
+"title": "Compilation with Arm",
 "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Compile With ARM
+# Compile with ARM
 
 This topic is about how to compile Doris on the ARM64 platform.
 

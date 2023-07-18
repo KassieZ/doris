@@ -26,7 +26,7 @@ under the License.
 
 # Statistics
 
-## Introduction to statistics information
+## Introduction to Statistics Information
 
 In SQL databases, the quality of the query optimizer has a significant impact on system performance. The optimizer needs to estimate the query cost according to the statistics information, especially in the equal-value query scenario, it is very important to estimate the cardinality accurately, which can help the optimizer to select the optimal query plan, thereby improving the query performance.
 
@@ -62,7 +62,7 @@ Column Statistics:
 
 Next, we will briefly introduce the histogram and other data structures, as well as the collection and maintenance of statistics information in detail.
 
-## Introduction to Histograms
+## Introduction of Histograms
 
 A histogram is a tool used to describe the distribution of data. It divides the data into several intervals (buckets) according to the size, and uses simple statistics to represent the characteristics of the data in each interval. Is an important statistic in a database that describes the distribution of data in a column. The most typical application scenario of histogram is to help the optimizer choose the optimal execution plan by estimating the selectivity of query predicates.
 
@@ -70,9 +70,9 @@ In Doris, an equi-height Histogram is built for each table-specific column. The 
 
 > Using the bucket method of contour histogram, the sum of numerical frequency in each bucket should be close to the total number of `1/N` rows. However, if the principle of equal height is strictly followed, some values will fall on the boundary of the bucket, resulting in the same value appearing in two different buckets. This situation can interfere with the estimation of the selection rate. Therefore, in the implementation, Doris modifies the bucketting method of the contour histogram: if adding a value to a bucket causes the frequency of data in the bucket to exceed the total number `1/N` of rows, the value is put into the bucket or the next bucket, depending on which situation is closer `1/N`.
 
-## Collect statistics
+## Collect Statistics
 
-### Manual collection
+### Manual Collection
 
 The user triggers a manual collection job through a statement `ANALYZE` to collect statistics for the specified table or column based on the supplied parameters.
 
@@ -157,9 +157,9 @@ mysql> SELECT * FROM stats_test.example_tbl;
 
 For the convenience of description, column statistics information is hereinafter referred to as statistics information, which stores the number of rows, the maximum value, the minimum value, the number of NULL values, and the like of a column; and a column histogram is referred to as histogram statistics information.
 
-#### Full collection
+#### Full Collection
 
-##### Collect column statistic
+##### Collect Column Statistics
 
 Column statistics mainly include the number of rows, the maximum value, the minimum value, and the number of NULL values of a column, which are collected through `ANALYZE TABLE` statements.
 
@@ -189,13 +189,13 @@ mysql> ANALYZE TABLE stats_test.example_tbl(city, age, sex);
 +--------+
 ```
 
-##### Collect histogram information
+##### Collect Histogram Information
 
 Column histogram information is used to describe the distribution of columns. It divides the data into several intervals (buckets) according to the size, and uses simple statistics to represent the characteristics of the data in each interval. Collected by `ANALYZE TABLE` statement fit `WITH HISTOGRAM`.
 
 Columns can be specified to collect their histogram information in the same way that normal statistics are collected. Collecting histogram information takes longer than normal statistics, so to reduce overhead, we can just collect histogram information for specific columns for the optimizer to use.
 
-Example:
+Examples:
 
 - Collects `example_tbl` histograms for all columns of a table, using the following syntax:
 
@@ -239,7 +239,7 @@ mysql> ANALYZE TABLE stats_test.example_tbl WITH HISTOGRAM PROPERTIES("num.bucke
 +--------+
 ```
 
-#### Incremental collection
+#### Incremental Collection
 
 For partitioned tables, incremental collection can be used to improve the speed of statistics collection if partitions are added or deleted after full collection.
 
@@ -256,7 +256,7 @@ Notice：
 - Histogram statistics do not support incremental collection.
 - When using incremental collection, you must ensure that the statistics information of table inventory is available (that is, other historical partition data does not change). Otherwise, the statistics information will be inaccurate.
 
-Example:
+Examples:
 
 - Incrementally collect `example_tbl` statistics for a table, using the following syntax:
 
@@ -289,11 +289,11 @@ mysql> ANALYZE TABLE stats_test.example_tbl(city, age, sex) WITH INCREMENTAL;
 +--------+
 ```
 
-#### Sampling collection
+#### Sampling Collection
 
 When the amount of table data is large, the system may take time to collect statistics. You can use sampling collection to speed up the collection of statistics. Specify the proportion of sampling or the number of rows to be sampled according to the actual situation.
 
-Example:
+Examples:
 
 - Sampling collects `example_tbl` statistics from a table, using the following syntax:
 
@@ -342,11 +342,11 @@ mysql> ANALYZE TABLE stats_test.example_tbl WITH HISTOGRAM WITH SAMPLE ROWS 5;
 +--------+
 ```
 
-#### Synchronous collection
+#### Synchronous Collection
 
 Generally, after executing `ANALYZE` the statement, the system will start an asynchronous job to collect statistics and return the statistics job ID immediately. If you want to wait for the statistics collection to finish and return, you can use synchronous collection.
 
-Example:
+Examples:
 
 - Sampling collects `example_tbl` statistics from a table, using the following syntax:
 
@@ -364,11 +364,11 @@ mysql> ANALYZE TABLE stats_test.example_tbl PROPERTIES("sync" = "true");
 mysql> ANALYZE TABLE stats_test.example_tbl WITH HISTOGRAM WITH SYNC;
 ```
 
-### Automatic collection
+### Automatic Collection
 
 Automatic collection means that the system will automatically generate a job to collect statistics when the user specifies `PERIOD` `AUTO` keywords or performs related configuration when executing `ANALYZE` a statement.
 
-#### Periodic collection
+#### Periodic Collection
 
 Periodic collection means that the corresponding statistics of a table are re-collected at a certain time interval.
 
@@ -405,7 +405,7 @@ mysql> ANALYZE TABLE stats_test.example_tbl WITH HISTOGRAM WITH PERIOD 86400;
 +--------+
 ```
 
-#### Automatic collection
+#### Automatic Collection
 
 Statistics can be "invalidated" when tables are changed, which can cause the optimizer to select the wrong execution plan.
 
@@ -454,9 +454,9 @@ mysql> ANALYZE TABLE stats_test.example_tbl PROPERTIES("automatic" = "true");
 +--------+
 ```
 
-### Manage job
+### Manage Job
 
-#### View statistics job
+#### View Statistics Job
 
 Collect information for the job by `SHOW ANALYZE` viewing the statistics.
 
@@ -490,7 +490,7 @@ Currently `SHOW ANALYZE`, 11 columns are output, as follows:
 
 > In the system, the statistics job contains multiple subtasks, each of which collects a separate column of statistics.
 
-Example:
+Examples:
 
 - View statistics job information with ID `20038`, using the following syntax:
 
@@ -530,7 +530,7 @@ mysql> SHOW ANALYZE WHERE state = "FINISHED" ORDER BY last_exec_time_in_ms DESC 
 +--------+--------------+----------------------------+-------------+-----------------+----------+---------------+---------+----------------------+----------+---------------+
 ```
 
-#### Terminate the statistics job
+#### Terminate the Statistics Job
 
 To `KILL ANALYZE` terminate a running statistics job.
 
@@ -552,9 +552,9 @@ Example:
 mysql> KILL ANALYZE 52357;
 ```
 
-## View statistics
+## View Statistics
 
-### Table statistics
+### Table Statistics
 
 > Temporarily unavailable.
 
@@ -582,7 +582,7 @@ Currently `SHOW TABLE STATS`, 6 columns are output, as follows:
 | update_time       | Update time                                         |
 | last_analyze_time | Time when statistics information was last collected |
 
-Example:
+Examples:
 
 - To view `example_tbl` statistics for a table, use the following syntax:
 
@@ -636,7 +636,7 @@ Currently `SHOW COLUMN STATS`, 10 columns are output, as follows:
 | `min`           | Column Minimum                        |
 | `max`           | Column Max Value                      |
 
-Example:
+Examples:
 
 - To view `example_tbl` statistics for all columns of a table, use the following syntax:
 
@@ -702,7 +702,7 @@ mysql> SHOW COLUMN STATS stats_test.example_tbl(city, age, sex) PARTITION (p_201
 +-------------+-------+------+----------+--------------------+-------------------+-----------+------------+
 ```
 
-### View column histogram information
+### View Column Histogram Information
 
 To `SHOW COLUMN HISTOGRAM` view the information for each bucket of the histogram.
 
@@ -788,7 +788,7 @@ Buckets description:
 ]
 ```
 
-## Modify the statistics
+## Modify the Statistics
 
 Users can modify the statistics information through statements `ALTER`, and modify the corresponding statistics information of the column according to the provided parameters.
 
@@ -803,7 +803,7 @@ Explanation:
 - Stat _ name and stat _ value: The corresponding stat name and the value of the stat info. Multiple stats are comma separated. Statistics that can be modified include `row_count`, `ndv`, `num_nulls` `min_value` `max_value`, and `data_size`.
 - Partition_name: specifies the target partition. Must be a partition existing in `table_name`. Multiple partitions are separated by commas.
 
-Example:
+Examples:
 
 - To modify `example_tbl` table `age` column `row_count` statistics, use the following syntax:
 
@@ -829,7 +829,7 @@ mysql> SHOW COLUMN STATS stats_test.example_tbl(age);
 +-------------+-----------+------+----------+-----------+---------------+------+------+
 ```
 
-## Delete statistics
+## Delete Statistics
 
 The user deletes the statistics for the specified table, partition, or column based on the supplied parameters through the delete statistics statement `DROP`. Both column statistics and column histogram information are deleted.
 
@@ -845,7 +845,7 @@ Explanation:
 - Column_name: The specified target column. Must be `table_name` a column that exists in. Multiple column names are separated by commas.
 - Expired: statistics cleanup. Table cannot be specified. Invalid statistics and out-of-date statistics jobs information in the system will be deleted.
 
-Example:
+Examples:
 
 - Clean up statistics, using the following syntax:
 
@@ -873,6 +873,6 @@ User can delete automatic/periodic Analyze jobs based on job ID.
 DROP ANALYZE JOB [JOB_ID]
 ```
 
-## ANALYZE configuration item
+## Analyze Configuration Item
 
 To be added.

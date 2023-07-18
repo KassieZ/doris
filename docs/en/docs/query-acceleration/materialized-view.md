@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Materialized view",
+    "title": "Materialized View",
     "language": "en"
 }
 ---
@@ -24,19 +24,19 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Materialized view
+# Materialized View
 A materialized view is a data set that is pre-calculated (according to a defined SELECT statement) and stored in a special table in Doris.
 
 The emergence of materialized views is mainly to satisfy users. It can analyze any dimension of the original detailed data, but also can quickly analyze and query fixed dimensions.
 
-## When to use materialized view
+## When to Use Materialized View
 
 + Analyze requirements to cover both detailed data query and fixed-dimensional query.
 + The query only involves a small part of the columns or rows in the table.
 + The query contains some time-consuming processing operations, such as long-time aggregation operations.
 + The query needs to match different prefix indexes.
 
-## Advantage
+## Advantages
 
 + For those queries that frequently use the same sub-query results repeatedly, the performance is greatly improved
 + Doris automatically maintains the data of the materialized view, whether it is a new import or delete operation, it can ensure the data consistency of the base table and the materialized view table. No need for any additional labor maintenance costs.
@@ -52,11 +52,11 @@ Materialized views cover the functions of Rollup while also supporting richer ag
 
 In other words, the functions previously supported by the `ALTER TABLE ADD ROLLUP` syntax can now be implemented by `CREATE MATERIALIZED VIEW`.
 
-## Use materialized views
+## Use Materialized Views
 
 The Doris system provides a complete set of DDL syntax for materialized views, including creating, viewing, and deleting. The syntax of DDL is consistent with PostgreSQL and Oracle.
 
-### Create a materialized view
+### Create a Materialized View
 
 Here you must first decide what kind of materialized view to create based on the characteristics of your query statement. This is not to say that your materialized view definition is exactly the same as one of your query statements. There are two principles here:
 
@@ -87,20 +87,20 @@ If you don't know how to verify that a query hits a materialized view, you can r
 
 At the same time, we do not recommend that users create multiple materialized views with similar shapes on the same table, as this may cause conflicts between multiple materialized views and cause query hit failures. (Of course, these possible problems can be verified in the test environment)
 
-### Support aggregate functions
+### Support Aggregate Functions
 
 The aggregate functions currently supported by the materialized view function are:
 
 + SUM, MIN, MAX (Version 0.12)
 + COUNT, BITMAP\_UNION, HLL\_UNION (Version 0.13)
 
-### Update strategy
+### Update Strategy
 
 In order to ensure the data consistency between the materialized view table and the Base table, Doris will import, delete and other operations on the Base table are synchronized to the materialized view table. And through incremental update to improve update efficiency. To ensure atomicity through transaction.
 
 For example, if the user inserts data into the base table through the INSERT command, this data will be inserted into the materialized view synchronously. When both the base table and the materialized view table are written successfully, the INSERT command will return successfully.
 
-### Query automatic matching
+### Query Automatic Matching
 
 After the materialized view is successfully created, the user's query does not need to be changed, that is, it is still the base table of the query. Doris will automatically select an optimal materialized view based on the current query statement, read data from the materialized view and calculate it.
 
@@ -119,7 +119,7 @@ The matching relationship between the aggregation in the materialized view and t
 
 After the aggregation functions of bitmap and hll match the materialized view in the query, the aggregation operator of the query will be rewritten according to the table structure of the materialized view. See example 2 for details.
 
-### Query materialized views
+### Query Materialized Views
 
 Check what materialized views the current table has, and what their table structure is. Through the following command:
 
@@ -149,19 +149,19 @@ MySQL [test]> desc mv_test all;
 
 You can see that the current `mv_test` table has three materialized views: mv\_1, mv\_2 and mv\_3, and their table structure.
 
-### Delete materialized view
+### Delete Materialized Views
 
 If the user no longer needs the materialized view, you can delete the materialized view by 'DROP' commen.
 
 You can view the specific syntax[SHOW CREATE MATERIALIZED VIEW](../sql-manual/sql-reference/Data-Definition-Statements/Drop/DROP-MATERIALIZED-VIEW.md)
 
-### View the materialized view that has been created
+### View the Materialized View that Has Been Created
 
 Users can view the created materialized views by using commands
 
 You can view the specific syntax[SHOW CREATE MATERIALIZED VIEW](../sql-manual/sql-reference/Show-Statements/SHOW-CREATE-MATERIALIZED-VIEW.md)
 
-### Cancel Create materialized view
+### Cancel Create Materialized Views
 
 ```text
 CANCEL ALTER TABLE MATERIALIZED VIEW FROM db_name.table_name
@@ -176,7 +176,7 @@ The use of materialized views is generally divided into the following steps:
 2. Asynchronously check whether the materialized view has been constructed
 3. Query and automatically match materialized views
 
-**First is the first step: Create a materialized view**
+**Step 1: Create a materialized view**
 
 Assume that the user has a sales record list, which stores the transaction id, salesperson, sales store, sales time, and amount of each transaction. The table building statement and insert data statement is:
 
@@ -502,7 +502,7 @@ In `Doris 2.0`, we have made some enhancements to the expressions supported by t
     duplicate key (k1,k2,k3)
     distributed BY hash(k1) buckets 3
     properties("replication_num" = "1");
-
+   
     insert into d_table select 1,1,1,'2020-02-20';
     insert into d_table select 2,2,2,'2021-02-20';
     insert into d_table select 3,-3,null,'2022-02-20';

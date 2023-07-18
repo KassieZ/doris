@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Getting-Started",
+    "title": "Quick Start",
     "language": "en"
 }
 
@@ -85,7 +85,7 @@ Execute the following command in the FE installation directory to complete the F
 ./bin/start_fe.sh --daemon
 ```
 
-#### View FE operational status
+#### View FE Operational Status
 
 You can check if Doris started successfully with the following command
 
@@ -159,7 +159,7 @@ ReplayedJournalId: 49292
 
 1. If the IsMaster, Join and Alive columns are true, the node is normal.
 
-#### Communicate with the server over an encrypted connection
+#### Communicate with the Server over an Encrypted Connection
 
 Doris supports SSL-based encrypted connections. It currently supports TLS1.2 and TLS1.3 protocols. Doris' SSL mode can be enabled through the following configuration:
 Modify the FE configuration file `conf/fe.conf` and add `enable_ssl = true`.
@@ -239,7 +239,7 @@ Execute the following command in the BE installation directory to complete the B
 ./bin/start_be.sh --daemon
 ```
 
-#### Adding a BE node to a cluster
+#### Adding a BE Node to a Cluster
 
 Connect to FE via MySQL client and execute the following SQL to add the BE to the cluster
 
@@ -250,7 +250,7 @@ ALTER SYSTEM ADD BACKEND "be_host_ip:heartbeat_service_port";
 1. be_host_ip: Here is the IP address of your BE, match with `priority_networks` in `be.conf`.
 2. heartbeat_service_port: This is the heartbeat upload port of your BE, match with `heartbeat_service_port` in `be.conf`, default is `9050`.
 
-#### View BE operational status
+#### View BE Operational Status
 
 You can check the running status of BE by executing the following command at the MySQL command line.
 
@@ -298,15 +298,15 @@ The stopping of Doris BE can be done with the following command
 ./bin/stop_be.sh
 ```
 
-## Create table
+## Create Table
 
-1. Create database
+1. Create Database
 
 ```sql
 create database demo;
 ```
 
-2. Create table
+2. Create Table
 
 ```sql
 use demo;
@@ -330,7 +330,7 @@ PROPERTIES (
 );
 ```
 
-3. Example data
+3. Example Data
 
 ```
 10000,2017-10-01,beijing,20,0,2017-10-01 06:00:00,20,10,10
@@ -344,7 +344,7 @@ PROPERTIES (
 
 Save the above data into `test.csv` file.
 
-4. Import data
+4. Import Data
 
 Here we import the data saved to the file above into the table we just created via Stream load。
 
@@ -387,7 +387,7 @@ After successful execution we can see the following return message
 
 Here we have finished importing the data, and we can now query and analyze the data according to our own needs.
 
-## Query data
+## Query Data
 
 We have finished building tables and importing data above, so we can experience Doris' ability to quickly query and analyze data.
 

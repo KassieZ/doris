@@ -26,7 +26,7 @@ under the License.
 
 # Partition Cache
 
-## Demand scenario
+## Demand Scenarios
 
 In most data analysis scenarios, write less and read more. Data is written once and read frequently. For example, the dimensions and indicators involved in a report are calculated at one time in the early morning, but there are hundreds or even thousands of times every day. page access, so it is very suitable for caching the result set. In data analysis or BI applications, the following business scenarios exist:
 
@@ -41,7 +41,7 @@ In the above four scenarios, the solution at the application layer is to put the
 - **Low hit rate**, cache the entire query result, if the data is written in real time, the cache is frequently invalidated, the hit rate is low and the system load is heavy
 - **Additional cost**, the introduction of external cache components will bring system complexity and increase additional costs
 
-## Solution
+## Solutions
 
 This partitioned caching strategy can solve the above problems, giving priority to ensuring data consistency. On this basis, the cache granularity is refined and the hit rate is improved. Therefore, it has the following characteristics:
 
@@ -107,7 +107,7 @@ The following demonstrates the process of executing the above SQL for the first 
 +------------+-----------------+
 ```
 
-1. SQL and data to get data from BE SQL and data to get data from BE
+2. SQL and data to get data from BE SQL and data to get data from BE
 
 ```sql
 SELECT eventdate,count(userid) FROM testdb.appevent WHERE eventdate>="2020-03-08" AND eventdate<="2020-03-09" GROUP BY eventdate ORDER BY eventdate;
@@ -119,7 +119,7 @@ SELECT eventdate,count(userid) FROM testdb.appevent WHERE eventdate>="2020-03-08
 +------------+-----------------+
 ```
 
-1. The last data sent to the terminal
+3. The last data sent to the terminal
 
 ```text
 +------------+-----------------+
@@ -135,7 +135,7 @@ SELECT eventdate,count(userid) FROM testdb.appevent WHERE eventdate>="2020-03-08
 +------------+-----------------+
 ```
 
-1. data sent to cache
+4. Data sent to cache
 
 ```text
 +------------+-----------------+
@@ -147,13 +147,13 @@ Partition cache is suitable for partitioning by date, some partitions are update
 
 Partition fields can also be other fields, but need to ensure that only a small number of partition updates.
 
-### Some restrictions
+### Some Restrictions
 
 - Only OlapTable is supported, other tables such as MySQL have no version information and cannot sense whether the data is updated
 - Only supports grouping by partition field, does not support grouping by other fields, grouping by other fields, the grouped data may be updated, which will cause the cache to be invalid
 - Only the first half of the result set, the second half of the result set and all cache hits are supported, and the result set is not supported to be divided into several parts by the cached data
 
-## How to use
+## How to Use
 
 ### Enable SQLCache
 
@@ -226,7 +226,7 @@ Partition average data size = cache_memory_total / cache_partition_total
 
 Other monitoring: You can view the CPU and memory indicators of the BE node, the Query Percentile and other indicators in the Query statistics from Grafana, and adjust the Cache parameters to achieve business goals.
 
-### Optimization parameters
+### Optimization Parameters
 
 The configuration item cache_result_max_row_count of FE, the maximum number of rows in the cache for the query result set, can be adjusted according to the actual situation, but it is recommended not to set it too large to avoid taking up too much memory, and the result set exceeding this size will not be cached.
 

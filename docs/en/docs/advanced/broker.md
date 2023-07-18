@@ -74,7 +74,7 @@ Different types of brokers support different storage systems.
 2. Object storage
 - All object stores that support the S3 protocol
 
-## Function provided by Broker
+## Function Provided by Broker
 
 1. [Broker Load](../data-operate/import/import-way/broker-load-manual.md)
 2. [Export](../data-operate/export/export-manual.md)

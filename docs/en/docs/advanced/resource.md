@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Resource management",
+    "title": "Resource Management",
     "language": "en"
 }
 ---
@@ -35,7 +35,7 @@ A resource contains basic information such as name and type. The name is globall
 The creation and deletion of resources can only be performed by users own `admin` permission. One resource belongs to the entire Doris cluster. Users with `admin` permission can assign permission of resource to other users. Please refer to `HELP GRANT` or doris document.
 
 
-## Operation Of Resource
+## Operation of Resource
 
 There are three main commands for resource management: `create resource`, `drop resource` and `show resources`. They are to create, delete and check resources. The specific syntax of these three commands can be viewed by executing `help CMD` after MySQL client connects to Doris.
 
@@ -62,7 +62,7 @@ The following shows how the two resources are used.
 
 ### Spark
 
-#### Parameter
+#### Parameters
 
 ##### Spark Parameters:
 
@@ -113,7 +113,7 @@ PROPERTIES
 
 ### ODBC
 
-#### Parameter
+#### Parameters
 
 ##### ODBC Parameters:
 

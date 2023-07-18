@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Orthogonal BITMAP calculation",
+    "title": "Orthogonal BITMAP Calculation",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Orthogonal BITMAP calculation
+# Orthogonal BITMAP Calculation
 
 ## Background
 
@@ -32,12 +32,12 @@ The original bitmap aggregate function designed by Doris is more general, but it
 
 The solution is to divide the bitmap column values according to the range, and the values of different ranges are stored in different buckets, so as to ensure that the bitmap values of different buckets are orthogonal and the data distribution is more uniform. In the case of query, the orthogonal bitmap in different buckets is firstly aggregated and calculated, and then the top-level node directly combines and summarizes the aggregated calculated values and outputs them. This will greatly improve the computing efficiency and solve the bottleneck problem of the top single node computing.
 
-## User guide
+## User Guide
 
 1. Create a table and add hid column to represent bitmap column value ID range as hash bucket column
 2. Usage scenarios
 
-### Create table
+### Create Table
 
 We need to use the aggregation model when building tables. The data type is bitmap, and the aggregation function is bitmap_ union
 ```
@@ -171,7 +171,7 @@ Explain:
 
 the aggregation of query planning is divided into two layers. The first layer of be aggregation node calculation includes init, update, and serialize steps. The second layer of be aggregation node calculation includes merge and finalize steps. In the first layer of be node, the input string is parsed in the init phase, converted to suffix expression Formula (inverse Polish formula), parse the calculated key value and initialize it in the map<key, bitmap>structure; In the update phase, the underlying kernel scan dimension column (filter_column) calls back the update function, and then aggregates the bitmap in the map structure of the previous step in the unit of computing key; In the serialize stage, the bitmap of the key column is parsed according to the suffix expression, and the bitmap intersection, merge and difference set is calculated using the first in, last out principle of the stack structure. Then the count value of the final bitmap is serialized and sent to the aggregation be node in the second layer.> Aggregates be nodes in the second layer, adds and sums all count values from the first layer nodes, and returns the final count result.
 
-### Suitable for the scene
+### Suitable for the Scene
 
 It is consistent with the scenario of orthogonal calculation of bitmap, such as calculation retention, funnel, user portrait, etc.
 

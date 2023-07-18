@@ -1,6 +1,6 @@
 ---
 {
-    "title": "External storage data import",
+    "title": "External Storage Data Import",
     "language": "en"
 }
 ---

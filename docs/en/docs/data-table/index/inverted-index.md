@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Inverted index",
+    "title": "Inverted Index",
     "language": "en"
 }
 ---
@@ -27,7 +27,7 @@ under the License.
 # [Experimental] Inverted Index
 
 <version since="2.0.0">
- 
+
 </version>
 
 From version 2.0.0, Doris implemented inverted index to support fulltext search on text field, normal eq and range filter on text, numeric, datetime field. This doc introduce inverted index usage, including create, drop and query.
@@ -168,11 +168,11 @@ SELECT * FROM table_name WHERE ts > '2023-01-01 00:00:00';
 SELECT * FROM table_name WHERE op_type IN ('add', 'delete');
 ```
 
-## Example
+## Examples
 
 This example will demostrate inverted index creation, fulltext query, normal query using a hackernews dataset with 1 million rows. The performanc comparation between using  and without inverted index will also be showed.
 
-### Create table
+### Create Table
 
 ```sql
 
@@ -209,7 +209,7 @@ PROPERTIES ("replication_num" = "1");
 ```
 
 
-### Load data
+### Load Data
 
 - load data by stream load
 
@@ -252,7 +252,7 @@ mysql> SELECT count() FROM hackernews_1m;
 
 ### Query
 
-#### Fulltext search query
+#### Fulltext Search Query
 
 - count the rows that comment contains 'OLAP' using LIKE, cost 0.18s
 ```sql
@@ -338,7 +338,7 @@ mysql> SELECT count() FROM hackernews_1m WHERE comment MATCH_ANY 'OLAP OLTP';
 ```
 
 
-#### normal equal, range query
+#### Normal Equal, Range Query
 
 - range query on DateTime column
 ```sql

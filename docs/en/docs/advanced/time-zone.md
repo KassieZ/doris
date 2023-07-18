@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Time zone",
+    "title": "Time Zone",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Time zone
+# Time Zone
 
 Doris supports multiple time zone settings
 
@@ -33,7 +33,7 @@ Doris supports multiple time zone settings
 * FE: Frontend, the front-end node of Doris. Responsible for metadata management and request access.
 * BE: Backend, Doris's back-end node. Responsible for query execution and data storage.
 
-## Basic concepts
+## Basic Concepts
 
 There are multiple time zone related parameters in Doris
 
@@ -45,7 +45,7 @@ When the server starts, it will be set automatically according to the time zone 
 
 Server current time zone, set it at session level or global level.
 
-## Specific operations
+## Specific Operations
 
 1. `SHOW VARIABLES LIKE '% time_zone%'`
 
@@ -59,7 +59,7 @@ Server current time zone, set it at session level or global level.
    
     This command can set time zone parameters at the global level. The FE will persist the parameters and will not fail when the connection is disconnected.
 
-### Impact of time zone
+### Impact of Time Zone
 
 Time zone setting affects the display and storage of time zone sensitive values.
 
@@ -91,6 +91,6 @@ Time zone values can be given in several formats, case-insensitive:
 
 * In order to be compatible with Doris and support CST abbreviated time zone, CST will be internally transferred to "Asia/Shanghai", which is Chinese standard time zone.
 
-## Time zone format list
+## Time Zone Format List
 
 [List of TZ database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)

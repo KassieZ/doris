@@ -36,7 +36,7 @@ Creating and dropping index is essentially a schema change job. For details, ple
 [Schema Change](../../advanced/alter-table/schema-change.md).
 
 ## Syntax
-### Create index
+### Create Index
 
 Create a bitmap index for siteid on table1
 
@@ -44,7 +44,7 @@ Create a bitmap index for siteid on table1
 CREATE INDEX [IF NOT EXISTS] index_name ON table1 (siteid) USING BITMAP COMMENT 'balabala';
 ```
 
-### View index
+### View Index
 
 Display the lower index of the specified table_name
 
@@ -52,7 +52,7 @@ Display the lower index of the specified table_name
 SHOW INDEX FROM example_db.table_name;
 ```
 
-### Delete index
+### Delete Index
 
 Delete the lower index of the specified table_name
 

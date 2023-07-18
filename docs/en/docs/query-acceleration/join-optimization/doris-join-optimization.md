@@ -1,5 +1,5 @@
 ---
-{ 'title': 'Doris Join optimization principle', 'language': 'en' }
+{ 'title': 'Doris Join Optimization Principle', 'language': 'en' }
 ---
 
 <!--
@@ -21,7 +21,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Doris Join optimization principle
+# Doris Join Optimization Principle
 
 Doris supports two physical operators, one is **Hash Join**, and the other is **Nest Loop Join**.
 
@@ -30,7 +30,7 @@ Doris supports two physical operators, one is **Hash Join**, and the other is **
 
 As a distributed MPP database, data shuffle needs to be performed during the Join process. Data needs to be split and scheduled to ensure that the final Join result is correct. As a simple example, assume that the relationship S and R are joined, and N represents the number of nodes participating in the join calculation; T represents the number of tuples in the relationship.
 
-## Doris Shuffle way
+## Doris Shuffle Way
 
 1. Doris supports 4 Shuffle methods
 
@@ -72,7 +72,7 @@ As a distributed MPP database, data shuffle needs to be performed during the Joi
 
     The data has been pre-partitioned, and the Join calculation is performed directly locally
 
-### Comparison of four Shuffle methods
+### Comparison of Four Shuffle Methods
 
 | Shuffle Mode   | Network Overhead | Physical Operators         | Applicable Scenarios                                                                                                                   |
 | -------------- | ---------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -87,7 +87,7 @@ T(relation) : Tuple number of relation
 
 The flexibility of the above four methods is from high to low, and its requirements for this data distribution are becoming more and more strict, but the performance of Join calculation is also getting better and better.
 
-## Runtime Filter Join optimization
+## Runtime Filter Join Optimization
 
 Doris will build a hash table in the right table when performing Hash Join calculation, and the left table will stream through the hash table of the right table to obtain the join result. The RuntimeFilter makes full use of the Hash table of the right table. When the right table generates a hash table, a filter condition based on the hash table data is generated at the same time, and then pushed down to the data scanning node of the left table. In this way, Doris can perform data filtering at runtime.
 
@@ -130,7 +130,7 @@ Next, look at the picture on the right and adjust the order of Join. Join the a 
     -   Put the conditional join table forward, that is to say, try to filter the conditional join table
     -   Hash Join has higher priority than Nest Loop Join, because Hash Join itself is much faster than Nest Loop Join.
 
-## Doris Join optimization method
+## Doris Join Optimization Methods
 
 Doris Join tuning method:
 
@@ -143,7 +143,7 @@ The above 4 steps basically complete a standard Join tuning process, and then it
 
 If the first 4 methods are connected in series, it still does not work. At this time, it may be necessary to rewrite the Join statement, or to adjust the data distribution. It is necessary to recheck whether the entire data distribution is reasonable, including querying the Join statement, and some manual adjustments may be required. Of course, this method has a relatively high mental cost, which means that further analysis is required only when the previous method does not work.
 
-## Optimization case practice
+## Optimization Case Practice
 
 ### Case 1
 
@@ -204,7 +204,7 @@ The following figure is an SQL statement after the rewrite is completed. A Join 
 
 ![image-20220523160915229](/images/join/image-20220523160915229.png)
 
-## Doris Join optimization suggestion
+## Doris Join Optimization Suggestion
 
 Finally, we summarize four suggestions for optimization and tuning of Doris Join:
 

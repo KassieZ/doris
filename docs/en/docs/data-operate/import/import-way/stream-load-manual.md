@@ -1,7 +1,7 @@
 ---
 {
-    "title": "Stream load",
-    "language": "en"
+    "title": "Stream Load",
+    "language": "en"s
 }
 ---
 
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Stream load
+# Stream Load
 
 Stream load is a synchronous way of importing. Users import local files or data streams into Doris by sending HTTP protocol requests. Stream load synchronously executes the import and returns the import result. Users can directly determine whether the import is successful by the return body of the request.
 
@@ -63,13 +63,13 @@ Users submit import commands through HTTP protocol. If submitted to FE, FE forwa
 
 The final result of the import is returned to the user by Coordinator BE.
 
-## Support data format
+## Support Data Format
 
 Stream Load currently supports data formats: CSV (text), JSON
 
 <version since="1.2"> PARQUET and ORC</version> 1.2+ support PARQUET and ORC
 
-## Basic operations
+## Basic Operations
 ### Create Load
 
 Stream load submits and transfers data through HTTP protocol. Here, the `curl` command shows how to submit an import.
@@ -83,7 +83,7 @@ The properties supported in the header are described in "Load Parameters" below
 The format is: - H "key1: value1"
 ```
 
-Examples:
+Example:
 
 ```
 curl --location-trusted -u root -T date -H "label:123" http://abc.com:8030/api/test/date/_stream_load
@@ -155,10 +155,10 @@ The number of rows in the original file = `dpp.abnorm.ALL + dpp.norm.ALL`
     Examples of column order transformation: There are three columns of original data (src_c1,src_c2,src_c3), and there are also three columns （dst_c1,dst_c2,dst_c3) in the doris table at present.
     when the first column src_c1 of the original file corresponds to the dst_c1 column of the target table, while the second column src_c2 of the original file corresponds to the dst_c2 column of the target table and the third column src_c3 of the original file corresponds to the dst_c3 column of the target table,which is written as follows:
     columns: dst_c1, dst_c2, dst_c3
-
+    
     when the first column src_c1 of the original file corresponds to the dst_c2 column of the target table, while the second column src_c2 of the original file corresponds to the dst_c3 column of the target table and the third column src_c3 of the original file corresponds to the dst_c1 column of the target table,which is written as follows:
     columns: dst_c2, dst_c3, dst_c1
-
+    
     Example of expression transformation: There are two columns in the original file and two columns in the target table (c1, c2). However, both columns in the original file need to be transformed by functions to correspond to the two columns in the target table.
     columns: tmp_c1, tmp_c2, c1 = year(tmp_c1), c2 = mouth(tmp_c2)
     Tmp_* is a placeholder, representing two original columns in the original file.
@@ -212,8 +212,9 @@ The number of rows in the original file = `dpp.abnorm.ALL + dpp.norm.ALL`
   }
   ```
     2. Trigger the commit operation on the transaction.
-    Note 1) requesting to fe and be both works
-    Note 2) `{table}` in url can be omit when commit
+  
+      Note 1) requesting to fe and be both works
+      Note 2) `{table}` in url can be omit when commit
   ```shell
   curl -X PUT --location-trusted -u user:passwd  -H "txn_id:18036" -H "txn_operation:commit"  http://fe_host:http_port/api/{db}/{table}/_stream_load_2pc
   {
@@ -222,8 +223,9 @@ The number of rows in the original file = `dpp.abnorm.ALL + dpp.norm.ALL`
   }
   ```
     3. Trigger an abort operation on a transaction
-    Note 1) requesting to fe and be both works
-    Note 2) `{table}` in url can be omit when abort
+  
+      Note 1) requesting to fe and be both works
+      Note 2) `{table}` in url can be omit when abort
   ```shell
   curl -X PUT --location-trusted -u user:passwd  -H "txn_id:18037" -H "txn_operation:abort"  http://fe_host:http_port/api/{db}/{table}/_stream_load_2pc
   {
@@ -232,7 +234,7 @@ The number of rows in the original file = `dpp.abnorm.ALL + dpp.norm.ALL`
   }
   ```
 
-### Return results
+### Return Results
 
 Since Stream load is a synchronous import method, the result of the import is directly returned to the user by creating the return value of the import.
 
@@ -320,7 +322,7 @@ By default, BE does not record Stream Load records. If you want to view records 
 
 ## Relevant System Configuration
 
-### FE configuration
+### FE Configuration
 
 + stream\_load\_default\_timeout\_second
 
@@ -328,7 +330,7 @@ By default, BE does not record Stream Load records. If you want to view records 
 
 	At present, Stream load does not support custom import timeout time. All Stream load import timeout time is uniform. The default timeout time is 600 seconds. If the imported source file can no longer complete the import within the specified time, the FE parameter ```stream_load_default_timeout_second``` needs to be adjusted.
 
-### BE configuration
+### BE Configuration
 
 + streaming\_load\_max\_mb
 
@@ -336,11 +338,11 @@ By default, BE does not record Stream Load records. If you want to view records 
 
 ## Best Practices
 
-### Application scenarios
+### Application Scenarios
 
 The most appropriate scenario for using Stream load is that the original file is in memory or on disk. Secondly, since Stream load is a synchronous import method, users can also use this import if they want to obtain the import results in a synchronous manner.
 
-### Data volume
+### Data Volume
 
 Since Stream load is based on the BE initiative to import and distribute data, the recommended amount of imported data is between 1G and 10G. Since the default maximum Stream load import data volume is 10G, the configuration of BE ```streaming_load_max_mb``` needs to be modified if files exceeding 10G are to be imported.
 
@@ -357,7 +359,7 @@ For example, import a 10G file
 Timeout = 1000s -31561;. 20110G / 10M /s
 ```
 
-### Complete examples
+### Complete Examples
 Data situation: In the local disk path /home/store_sales of the sending and importing requester, the imported data is about 15G, and it is hoped to be imported into the table store\_sales of the database bj_sales.
 
 Cluster situation: The concurrency of Stream load is not affected by cluster size.
@@ -382,7 +384,7 @@ Cluster situation: The concurrency of Stream load is not affected by cluster siz
     curl --location-trusted -u user:password -T /home/store_sales -H "label:abc" http://abc.com:8030/api/bj_sales/store_sales/_stream_load
     ```
 
-### Coding with StreamLoad
+### Coding With Stream Load
 
 You can initiate HTTP requests for Stream Load using any language. Before initiating HTTP requests, you need to set several necessary headers:
 
@@ -431,7 +433,7 @@ Doris provides StreamLoad examples in three languages: [Java](https://github.com
 	        <version>4.5.13</version>
 	      </dependency>
 	  ```
- 
+
 * After enabling the Stream Load record on the BE, the record cannot be queried
 
   This is caused by the slowness of fetching records, you can try to adjust the following parameters:

@@ -1,6 +1,6 @@
 ---
 {
-"title": "SQL MODE",
+"title": "SQL Mode",
 "language": "en"
 }
 ---
@@ -24,13 +24,13 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# SQL MODE
+# SQL Mode
 
 The sql mode newly supported by Doris refers to the sql mode management mechanism of Mysql. Each client can set its own sql mode, and database administrators with Admin privileges can set the global sql mode.
-## sql mode introduce
+## SQL Mode Introduction
 
 sql mode enables users to switch between different styles of sql syntax and data validation strictness, making Doris more compatible with other databases. For example, in some databases, the '||' symbol is a string concatenator, but in Doris it is equivalent to 'or', then users only need to use sql mode to switch to the style they want. Each client can set the sql mode, which is valid in the current session. Only users with Admin privileges can set the global sql mode.
-## principle
+## Principles
 
 The sql mode is stored in SessionVariables with a 64-bit Long type. Each bit of this address represents the enable/disable (1 means open, 0 means disable) state of a mode, as long as you know where each mode is. Bit, we can easily and quickly perform checksum operations on sql mode through bit operations.
 
@@ -38,7 +38,7 @@ Every time you query the sql mode, the Long type will be parsed and turned into 
 
 The global sql mode that has been set will be persisted, so the operation on the global sql mode always only needs to be performed once, and the last global sql mode can be restored even after the program is restarted.
 
-## Operation method
+## Operation Methods
 
 1. Set sql mode
 ```
@@ -61,11 +61,11 @@ show global variables
 show session variables
 ```
 
-## mode is supported
+## Mode is Supported
 
 1. `PIPES_AS_CONCAT`
 
 In this mode, the '||' symbol is a string concatenation symbol (same as the CONCAT() function), not a synonym for the 'OR' symbol. (e.g., `'a'||'b' = 'ab'`, `1||0 = '10'`)
-## composite mode
+## Composite Mode
 
 (subsequent additions)

@@ -4,39 +4,33 @@
             "type": "category",
             "label": "Getting Started",
             "items": [
-                "get-starting/get-starting"
+                "get-starting/get-starting",
+		"get-starting/doris-introduction"
             ]
         },
         {
             "type": "category",
-            "label": "Doris Introduction",
-            "items": [
-                "summary/basic-summary"
-            ]
-        },
-        {
-            "type": "category",
-            "label": "Install And Deploy",
+            "label": "Install and Deploy",
             "items": [
                 "install/standard-deployment",
                 {
                     "type": "category",
                     "label": "Docker Deployment",
                     "items": [
-                        "install/construct-docker/construct-docker-image",
-                        "install/construct-docker/run-docker-cluster"
+                        "install/construct-docker/build-docker-image",
+                        "install/construct-docker/deploy-docker-cluster"
                     ]
                 },
-                "install/k8s-deploy",
+                "install/k8s_deploy",
                 {
                     "type": "category",
                     "label": "Source Code Compilation",
                     "items": [
                         "install/source-install/compilation-general",
                         "install/source-install/compilation-with-ldb-toolchain",
-                        "install/source-install/compilation-arm",
-                        "install/source-install/compilation-win",
-                        "install/source-install/compilation-mac"
+                        "install/source-install/compilation-with-arm",
+                        "install/source-install/compilation-on-windows",
+                        "install/source-install/compilation-on-mac"
                     ]
                 }
             ]
@@ -107,7 +101,7 @@
                     "label": "Export",
                     "items": [
                         "data-operate/export/export-manual",
-                        "data-operate/export/outfile",
+                        "data-operate/export/export-query-result",
                         "data-operate/export/export_with_mysql_dump"
                     ]
                 },
@@ -116,7 +110,7 @@
                     "label": "Update and Delete",
                     "items": [
                         "data-operate/update-delete/batch-delete-manual",
-                        "data-operate/update-delete/update",
+                        "data-operate/update-delete/update-manual",
                         "data-operate/update-delete/delete-manual",
                         "data-operate/update-delete/sequence-column-manual"
                     ]
@@ -140,7 +134,7 @@
                     "label": "Doris Partition",
                     "items": [
                         "advanced/partition/dynamic-partition",
-                        "advanced/partition/table-temp-partition"
+                        "advanced/partition/temporary-partition"
                     ]
                 },
                 {
@@ -154,7 +148,7 @@
                 "advanced/broker",
                 {
                     "type": "category",
-                    "label": "Best Practice",
+                    "label": "Best Practices",
                     "items": [
                         "advanced/best-practice/query-analysis",
                         "advanced/best-practice/import-analysis",
@@ -168,8 +162,8 @@
                 "advanced/variables",
                 "advanced/time-zone",
                 "advanced/small-file-mgr",
-                "advanced/cold_hot_separation",
-                "advanced/compute_node",
+                "advanced/cold-hot-separation",
+                "advanced/compute-node",
                 "advanced/lateral-view"
             ]
         },

@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Synchronize data using Insert method",
+    "title": "Synchronize Data Using Insert Method",
     "language": "en"
 }
 ---

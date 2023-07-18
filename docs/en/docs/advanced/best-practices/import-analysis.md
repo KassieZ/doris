@@ -31,7 +31,7 @@ Doris provides a graphical command to help users analyze a specific import more 
 
 > This function is currently only for Broker Load analysis.
 
-## Import plan tree
+## Import Plan Tree
 
 If you don't know much about Doris' query plan tree, please read the previous article [DORIS/best practices/query analysis](./query-analysis.md).
 
@@ -53,7 +53,7 @@ The Fragment of the import execution plan will be divided into one or more Insta
 
 The execution plans of multiple subtasks are executed concurrently, and multiple instances of an execution plan are also executed in parallel.
 
-## View import Profile
+## View Import Profile
 
 The user can open the session variable `is_report_success` with the following command:
 

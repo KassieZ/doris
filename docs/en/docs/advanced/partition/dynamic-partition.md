@@ -45,7 +45,7 @@ Through the dynamic partitioning feature, users can set the rules of dynamic par
 
 ## Usage
 
-### Establishment of tables
+### Establishment of Tables
 
 The rules for dynamic partitioning can be specified when the table is created or modified at runtime. Currently,dynamic partition rules can only be set for partition tables with single partition columns.    
 
@@ -73,7 +73,7 @@ The rules for dynamic partitioning can be specified when the table is created or
     )
     ```
     
-### Dynamic partition rule parameters
+### Dynamic Partition Rule Parameters
 
 The rules of dynamic partition are prefixed with `dynamic_partition.`:
 
@@ -251,7 +251,7 @@ When `expect_create_partition_num` is greater than `max_dynamic_partition_num` (
 
 If some partitions between `dynamic_partition.start` and `dynamic_partition.end` are lost due to some unexpected circumstances when using dynamic partition, the lost partitions between the current time and `dynamic_partition.end` will be recreated, but the lost partitions between `dynamic_partition.start` and the current time will not be recreated.
 
-### Example
+### Examples
 
 1. Table `tbl1` partition column k1, type is DATE, create a dynamic partition rule. By day partition, only the partitions of the last 7 days are kept, and the partitions of the next 3 days are created in advance.
 
@@ -448,7 +448,7 @@ mysql> SHOW DYNAMIC PARTITION TABLES;
     
     `curl --location-trusted -u username:password -XGET http://fe_host:fe_http_port/api/_set_config?dynamic_partition_check_interval_seconds=432000`
     
-### Converting dynamic and manual partition tables to each other
+### Converting Dynamic and Manual Partition Tables to Each Other
 
 For a table, dynamic and manual partitioning can be freely converted, but they cannot exist at the same time, there is and only one state.
 
@@ -466,7 +466,7 @@ The dynamic partitioning feature can be disabled by executing `ALTER TABLE tbl_n
 
 When dynamic partitioning feature is disabled, Doris will no longer manage partitions automatically, and users will have to create or delete partitions manually by using `ALTER TABLE`.
 
-## Common problem
+## Common Problems
 
 1. After creating the dynamic partition table, it prompts ```Could not create table with dynamic partition when fe config dynamic_partition_enable is false```
 

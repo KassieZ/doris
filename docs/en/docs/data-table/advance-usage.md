@@ -196,7 +196,7 @@ mysql> SHOW VARIABLES LIKE "%mem_limit%";
 >* The above modification is session level and is only valid within the current connection session. Disconnecting and reconnecting will change back to the default value.
 >* If you need to modify the global variable, you can set it as follows: `SET GLOBAL exec_mem_limit = 8589934592;` When the setup is complete, disconnect the session and log in again, and the parameters will take effect permanently.
 
-### Query timeout
+### Query Timeout
 
 The current default query time is set to 300 seconds. If a query is not completed within 300 seconds, the query will be cancelled by the Doris system. Users can use this parameter to customize the timeout time of their applications and achieve a blocking mode similar to wait (timeout).
 
@@ -272,7 +272,7 @@ When multiple FE nodes are deployed, users can deploy load balancing layers on t
 
 Here are some highly available solutions:
 
-**The first**
+**The First**
 
 I retry and load balancing in application layer code. For example, if a connection is found to be dead, it will automatically retry on other connections. Application-level code retry requires the application to configure multiple Doris front-end node addresses.
 
@@ -284,7 +284,7 @@ If you use MySQL JDBC connector to connect Doris, you can use jdbc's automatic r
 jdbc:mysql://[host1][:port1],[host2][:port2][,[host3][:port3]]...[/[database]][?propertyName1=propertyValue1[&propertyName2=propertyValue2]...]
 ```
 
-**The third**
+**The Third**
 
 Applications can connect to and deploy MySQL Proxy on the same machine by configuring MySQL Proxy's Failover and Load Balance functions.
 

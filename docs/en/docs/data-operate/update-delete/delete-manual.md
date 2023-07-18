@@ -80,7 +80,7 @@ The delete command is an SQL command, and the returned results are synchronous. 
    ERROR 1064 (HY000): errCode = 2, detailMessage = {错误原因}
    ```
 
-   example:
+   Examples:
 
    A timeout deletion will return the timeout and unfinished replicas displayed as ` (tablet = replica)`
 
@@ -99,9 +99,9 @@ The delete command is an SQL command, and the returned results are synchronous. 
       1. If `status` is `committed`, the data deletion is committed and will be eventually invisible. Users can wait for a while and then use the `show delete` command to view the results.
       2. If `status` is `visible`, the data have been deleted successfully.
 
-## Delete operation related FE configuration
+## Delete Operation Related FE Configuration
 
-**TIMEOUT configuration**
+**TIMEOUT Configuration**
 
 In general, Doris's deletion timeout is limited from 30 seconds to 5 minutes. The specific time can be adjusted through the following configuration items
 
@@ -123,13 +123,13 @@ In general, Doris's deletion timeout is limited from 30 seconds to 5 minutes. Th
 
   Because delete itself is an SQL command, the deletion statement is also limited by the session variables, and the timeout is also affected by the session value `query'timeout`. You can increase the value by `set query'timeout = xxx`.
 
-**InPredicate configuration**
+**InPredicate Configuration**
 
 * `max_allowed_in_element_num_of_delete`
 
   If the user needs to take a lot of elements when using the in predicate, the user can adjust the upper limit of the allowed in elements number, and the default value is 1024.
 
-## Show delete history
+## Show Delete History
 
 The user can view the deletion completed in history through the show delete statement.
 
@@ -158,4 +158,4 @@ Unlike the Insert into command, delete cannot specify `label` manually. For the 
 
 ## More Help
 
-For more detailed syntax used by **delete**, see the [delete](../../sql-manual/sql-reference/Data-Manipulation-Statements/Manipulation/DELETE.md) command manual, You can also enter `HELP DELETE` in the Mysql client command line to get more help information
+For more detailed syntax used by **delete**, see the [delete](../../sql-manual/sql-reference/Data-Manipulation-Statements/Manipulation/DELETE.md) command manual, You can also enter `HELP DELETE` in the Mysql client command line to get more help informationd

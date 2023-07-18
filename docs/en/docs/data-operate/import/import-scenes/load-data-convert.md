@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Data transformation, column mapping and filtering",
+    "title": "Data Transformation, Column Mapping and Filtering",
     "language": "en"
 }
 ---

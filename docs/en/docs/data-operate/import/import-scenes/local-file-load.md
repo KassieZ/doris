@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Import local data",
+    "title": "Import Local Data",
     "language": "en"
 }
 ---

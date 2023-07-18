@@ -24,11 +24,11 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# JSON format data import
+# JSON Format Data Import
 
 Doris supports importing data in JSON format. This document mainly describes the precautions when importing data in JSON format.
 
-## Supported import methods
+## Supported Import Methods
 
 Currently, only the following import methods support data import in JSON format:
 
@@ -38,7 +38,7 @@ Currently, only the following import methods support data import in JSON format:
 
 Other ways of importing data in JSON format are not currently supported.
 
-## Supported JSON formats
+## Supported JSON Formats
 
 Currently only the following two JSON formats are supported:
 
@@ -283,7 +283,7 @@ The above example will import the value of k1 multiplied by 100. The final impor
 +------+------+
 ````
 
-## JSON root
+## JSON Root
 
 Doris supports extracting data specified in JSON through JSON root.
 
@@ -315,7 +315,7 @@ Doris supports extracting data specified in JSON through JSON root.
 
   The element will be treated as new JSON for subsequent import operations,and get the final data 321 and shanghai
 
-## NULL and Default values
+## NULL and Default Values
 
 Example data is as follows:
 
@@ -370,7 +370,7 @@ This is because Doris doesn't know "the missing column is column k2 in the table
 curl -v --location-trusted -u root: -H "format: json" -H "strip_outer_array: true" -H "jsonpaths: [\"$.k1\", \"$.k2\"]" - H "columns: k1, tmp_k2, k2 = ifnull(tmp_k2, 'x')" -T example.json http://127.0.0.1:8030/api/db1/tbl1/_stream_load
 ````
 
-## Application example
+## Application Examples
 
 ### Stream Load
 

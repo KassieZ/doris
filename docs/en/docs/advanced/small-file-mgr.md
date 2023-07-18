@@ -33,7 +33,7 @@ Some functions in Doris require some user-defined files. For example, public key
 * BDBJE: Oracle Berkeley DB Java Edition. Distributed embedded database for persistent metadata in FE.
 * SmallFileMgr: File Manager. Responsible for creating and maintaining user files.
 
-## Basic concepts
+## Basic Concepts
 
 Files are files created and saved by users in Doris.
 
@@ -41,7 +41,7 @@ A file is located by `database`, `catalog`, `file_name`. At the same time, each 
 
 File creation and deletion can only be performed by users with `admin` privileges. A file belongs to a database. Users who have access to a database (queries, imports, modifications, etc.) can use the files created under the database.
 
-## Specific operation
+## Specific Operation
 
 File management has three main commands: `CREATE FILE`, `SHOW FILE` and `DROP FILE`, creating, viewing and deleting files respectively. The specific syntax of these three commands can be viewed by connecting to Doris and executing `HELP cmd;`.
 
@@ -97,23 +97,23 @@ Examples:
     DROP FILE "ca.pem" properties("catalog" = "kafka");
 ```
 
-## Implementation details
+## Implementation Details
 
-### Create and delete files
+### Create and Delete Files
 
 When the user executes the `CREATE FILE` command, FE downloads the file from a given URL. The contents of the file are stored in FE memory directly in the form of Base64 encoding. At the same time, the file content and meta-information related to the file will be persisted in BDBJE. All created files, their meta-information and file content reside in FE memory. If the FE goes down and restarts, meta information and file content will also be loaded into memory from the BDBJE. When a file is deleted, the relevant information is deleted directly from FE memory and persistent information is deleted from BDBJE.
 
-### Use of documents
+### Use of Documents
 
 If the FE side needs to use the created file, SmallFileMgr will directly save the data in FE memory as a local file, store it in the specified directory, and return the local file path for use.
 
 If the BE side needs to use the created file, BE will download the file content to the specified directory on BE through FE's HTTP interface `api/get_small_file` for use. At the same time, BE also records the information of the files that have been downloaded in memory. When BE requests a file, it first checks whether the local file exists and verifies it. If the validation passes, the local file path is returned directly. If the validation fails, the local file is deleted and downloaded from FE again. When BE restarts, local files are preloaded into memory.
 
-## Use restrictions
+## Use Restrictions
 
 Because the file meta-information and content are stored in FE memory. So by default, only files with size less than 1MB can be uploaded. And the total number of files is limited to 100. The configuration items described in the next section can be modified.
 
-## Relevant configuration
+## Relevant Configuration
 
 1. FE configuration
 

@@ -54,7 +54,7 @@ In Cumulative Compaction, hidden columns are treated as normal columns, and the 
 
 In Base Compaction, delete the rows marked for deletion to reduce the space occupied by data.
 
-## Enable bulk delete support
+## Enable Bulk Delete Support
 
 There are two ways of enabling batch delete support:
 
@@ -130,12 +130,12 @@ The writing method of `Routine Load` adds a mapping to the `columns` field. The 
     );
 ```
 
-## Note
+## Notes
 1. Since import operations other than stream load may be executed out of order inside doris, if it is not stream load when importing using the `MERGE` method, it needs to be used with load sequence. For the specific syntax, please refer to the [sequence](sequence-column-manual.md) column related documents
 2. `DELETE ON` condition can only be used with MERGE.
 3. if session variable `SET show_hidden_columns = true` was executed before running import task to show whether table support batch delete feature, then execute `select count(*) from xxx` statement in the same session after finishing `DELETE/MERGE` import task, it will result in a unexpected result that the statement result set will include the deleted results. To avoid this problem you should execute `SET show_hidden_columns = false` before select statement or open a new session to run the select statement.
 
-## Usage example
+## Usage Examples
 
 ### Check if bulk delete support is enabled
 
@@ -155,7 +155,7 @@ mysql> DESC test;
 4 rows in set (0.00 sec)
 ```
 
-### Stream Load usage example
+### Stream Load Usage Examples
 
 1. Import data normally:
 ```shell
@@ -233,7 +233,7 @@ curl --location-trusted -u root: -H "column_separator:," -H "columns: name, gend
 When the unique table has the sequence column, sequence column is used as the basis for the replacement order of the REPLACE aggregate function under the same key column, and the larger value can replace the smaller value.
 If you want delete some data, the imported data must have the same key and the sequence column must be larger or equal than before.
 
-for example, one table like this:
+For example, one table like this:
 ```sql
 mysql> SET show_hidden_columns=true;
 Query OK, 0 rows affected (0.00 sec)

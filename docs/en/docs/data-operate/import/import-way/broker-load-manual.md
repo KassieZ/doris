@@ -32,7 +32,7 @@ Because the data in the Doris table is ordered, Broker load uses the doris clust
 
 Users need to create [Broker load](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/BROKER-LOAD.md) import through MySQL protocol and import by viewing command to check the import result.
 
-## Applicable scene
+## Applicable Scene
 
 * The source data is in a storage system that the broker can access, such as HDFS.
 * The amount of data is at the level of tens to hundreds of GB.
@@ -76,13 +76,13 @@ BE pulls data from the broker during execution, and imports the data into the sy
 
 ```
 
-## start import
+## Start Import
 
 Let's look at [Broker Load](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/BROKER-LOAD.md) through several actual scenario examples. use
 
-### Data import of Hive partition table
+### Data Import of Hive Partition Table
 
-1. Create Hive table
+1. Create Hive Table
 
 ```sql
 ##Data format is: default, partition field is: day
@@ -147,7 +147,7 @@ PROPERTIES (
 );
 ````
 
-3. Start importing data
+3. Start Importing Data
 
    Specific syntax reference: [Broker Load](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/BROKER-LOAD.md)
 
@@ -174,7 +174,7 @@ PROPERTIES
 );
 ````
 
-### Hive partition table import (ORC format)
+### Hive Partition Table Import (ORC Format)
 1. Create Hive partition table, ORC format
 
 ```sql
@@ -232,7 +232,7 @@ STORED AS ORC
    - `FORMAT AS "orc"` : here we specify the data format to import
    - `SET` : Here we define the field mapping relationship between the Hive table and the Doris table and some operations for field conversion
 
-### HDFS file system data import
+### HDFS File System Data Import
 
 Let's continue to take the Doris table created above as an example to demonstrate importing data from HDFS through Broker Load.
 
@@ -258,7 +258,7 @@ LOAD LABEL demo.label_20220402
 
 The specific parameters here can refer to: [Broker](../../../advanced/broker.md) and [Broker Load](../../../sql-manual/sql-reference-v2 /Data-Manipulation-Statements/Load/BROKER-LOAD.md) documentation
 
-## View import status
+## View Import Status
 
 We can view the status information of the above import task through the following command,
 
@@ -285,7 +285,7 @@ LoadFinishTime: 2022-04-01 18:59:11
 1 row in set (0.01 sec)
 ````
 
-## Cancel import
+## Cancel Import
 
 When the broker load job status is not CANCELLED or FINISHED, it can be manually canceled by the user. When canceling, you need to specify the Label of the import task to be canceled. Cancel the import command syntax to execute [CANCEL LOAD](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/CANCEL-LOAD.md) view.
 
@@ -294,13 +294,13 @@ For example: cancel the import job with the label broker_load_2022_03_23 on the 
 ```sql
 CANCEL LOAD FROM demo WHERE LABEL = "broker_load_2022_03_23";
 ````
-## Relevant system configuration
+## Relevant System Configuration
 
-### Broker parameters
+### Broker Parameters
 
 Broker Load needs to use the Broker process to access remote storage. Different brokers need to provide different parameters. For details, please refer to [Broker documentation](../../../advanced/broker.md).
 
-### FE configuration
+### FE Configuration
 
 The following configurations belong to the system-level configuration of Broker load, that is, the configurations that apply to all Broker load import tasks. The configuration values are adjusted mainly by modifying `fe.conf`.
 
@@ -325,11 +325,11 @@ The following configurations belong to the system-level configuration of Broker 
 
 ## Best Practices
 
-### Application scenarios
+### Application Scenarios
 
 The most suitable scenario for using Broker load is the scenario where the original data is in the file system (HDFS, BOS, AFS). Secondly, since Broker load is the only way of asynchronous import in a single import, if users need to use asynchronous access when importing large files, they can also consider using Broker load.
 
-### The amount of data
+### The Amount of Data
 
 Only the case of a single BE is discussed here. If the user cluster has multiple BEs, the amount of data in the title below should be multiplied by the number of BEs. For example: if the user has 3 BEs, the value below 3G (inclusive) should be multiplied by 3, that is, below 9G (inclusive).
 
@@ -381,7 +381,7 @@ Only the case of a single BE is discussed here. If the user cluster has multiple
      Note: The average user's environment may not reach the speed of 10M/s, so it is recommended that files over 500G be divided and imported.
      ````
 
-### Job scheduling
+### Job Scheduling
 
 The system limits the number of running Broker Load jobs in a cluster to prevent too many Load jobs from running at the same time.
 
@@ -403,7 +403,7 @@ This Profile can help analyze the running status of import jobs.
 
 Currently the Profile can only be viewed after the job has been successfully executed
 
-## common problem
+## Common Problems
 
 - Import error: `Scan bytes per broker scanner exceed limit:xxx`
 
@@ -434,6 +434,6 @@ Currently the Profile can only be viewed after the job has been successfully exe
 
   Note: If you use the orc file directly generated by some hive versions, the header in the orc file is not hive meta data, but (_col0, _col1, _col2, ...), which may cause Invalid Column Name error, then you need to use set to map
 
-## more help
+## More Help
 
 For more detailed syntax and best practices used by Broker Load, see [Broker Load](../../../sql-manual/sql-reference/Data-Manipulation-Statements/Load/BROKER-LOAD.md) command manual, you can also enter `HELP BROKER LOAD` in the MySql client command line for more help information.

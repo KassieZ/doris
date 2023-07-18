@@ -30,7 +30,7 @@ Starting from version 0.14, Doris supports the direct import of data from online
 
 This document mainly introduces how to import data stored in AWS S3. It also supports the import of other object storage systems that support the S3 protocol, such as Baidu Cloud’s BOS, Alibaba Cloud’s OSS and Tencent Cloud’s COS, etc.
 
-## Applicable scenarios
+## Applicable Scenarios
 
 - Source data in S3 protocol accessible storage systems, such as S3, BOS.
 - Data volumes range from tens to hundreds of GB.
@@ -56,7 +56,7 @@ Like Broker Load just replace `WITH BROKER broker_name ()` with
     )
 ```
 
-example:
+Example:
 
 ```sql
     LOAD LABEL example_db.exmpale_label_1

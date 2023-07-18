@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Approximate deduplication using HLL",
+    "title": "Approximate Deduplication Using HLL",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-## HLL approximate deduplication
+## HLL Approximate Deduplication
 
 In actual business scenarios, with the increasing amount of business data, the pressure on data deduplication is also increasing. When the data reaches a certain scale, the cost of using accurate deduplication is also increasing. If it is acceptable, it is a very good way to achieve fast deduplication and reduce computational pressure through approximate algorithms. This article mainly introduces HyperLogLog (HLL for short) provided by Doris as an approximate deduplication algorithm.
 
@@ -78,13 +78,13 @@ This function is used to calculate the cardinality estimate for a single hll col
 
 Generate HLL column type for insert or import, see related instructions for import usage
 
-## How to use Doris HLL
+## How to Use Doris HLL
 
 1. When using HLL to deduplicate, you need to set the target column type to HLL and the aggregate function to HLL_UNION in the table creation statement
 2. Columns of HLL type cannot be used as Key columns
 3. The user does not need to specify the length and default value, the length is controlled within the system according to the degree of data aggregation
 
-### Create a table with hll column
+### Create a Table with HLL Column
 
 ```sql
 create table test_hll(
@@ -105,7 +105,7 @@ PROPERTIES(
 
 ### Import Data
 
-1. Stream load Import
+1. Stream Load Import
 
    ```
    curl --location-trusted -u root: -H "label:label_test_hll_load" \
@@ -166,11 +166,11 @@ LOAD LABEL demo.test_hlllabel
  );
 ```
 
-### Query data
+### Query Data
 
 HLL columns do not allow direct query of the original value, but can only be queried through the HLL aggregate function.
 
-1. Find the total PV
+1. Find the Total PV
 
 ```sql
 mysql> select HLL_UNION_AGG(pv) from test_hll;
@@ -194,7 +194,7 @@ mysql> SELECT COUNT(DISTINCT pv) FROM test_hll;
 1 row in set (0.01 sec)
 ```
 
-2. Find the PV of each day
+2. Find the PV of Each Day
 
 ```sql
 mysql> select HLL_UNION_AGG(pv) from test_hll group by dt;

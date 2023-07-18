@@ -32,7 +32,7 @@ under the License.
 
 Modern query optimizers face challenges such as more complex query statements and more diverse query scenarios. At the same time, users are more and more eager to obtain query results as soon as possible. The outdated architecture of the old optimizer is difficult to meet the needs of rapid iteration in the future. Based on this, we set out to develop a new query optimizer for modern architectures. While processing the query requests of the current Doris scene more efficiently, it provides better scalability and lays a good foundation for handling the more complex requirements that Doris will face in the future.
 
-## Advantages of the new optimizer
+## Advantages of the New Optimizer
 
 ### Smarter
 
@@ -44,15 +44,15 @@ TPC-H SF100 query speed comparison. The environment is 3BE, the new optimizer us
 
 ![execution time comparison](/images/nereids-tpch.png)
 
-### more robust
+### More Robust
 
 All optimization rules of the new optimizer are completed on the logical execution plan tree. After the query syntax and semantic analysis is completed, it will be transformed into a tree structure. Compared with the internal data structure of the old optimizer, it is more reasonable and unified. Taking subquery processing as an example, the new optimizer is based on a new data structure, which avoids separate processing of subqueries by many rules in the old optimizer. In turn, the possibility of logic errors in optimization rules is reduced.
 
-### more flexible
+### More Flexible
 
 The architectural design of the new optimizer is more reasonable and modern. Optimization rules and processing stages can be easily extended. Can more quickly respond to user needs.
 
-## How to use
+## How to Use
 
 Turn on Nereids
 
@@ -68,9 +68,9 @@ SET enable_fallback_to_original_planner=true;
 
 Recommand execute analyze on table before query on it to get the benefits of cbo
 
-## Known issues and temporarily unsupported features
+## Known Issues and Temporarily Unsupported Features
 
-### temporarily unsupported features
+### Temporarily Unsupported Features
 
 > If automatic fallback is enabled, it will automatically fall back to the old optimizer execution
 
@@ -81,6 +81,6 @@ Recommand execute analyze on table before query on it to get the benefits of cbo
 - Java UDF and HDFS UDF
 - High concurrent point query optimize
 
-### known issues
+### Known Issues
 
 - Cannot use query cache and partition cache to accelarate query

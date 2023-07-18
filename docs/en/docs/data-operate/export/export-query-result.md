@@ -28,7 +28,7 @@ under the License.
 
 This document describes how to use the  [SELECT INTO OUTFILE](../../sql-manual/sql-reference/Data-Manipulation-Statements/OUTFILE.md)  command to export query results.
 
-## Example
+## Examples
 
 ### Export to HDFS
 
@@ -46,7 +46,7 @@ PROPERTIES
 );
 ```
 
-### Export to local file
+### Export to Local Files
 
 When exporting to a local file, you need to configure `enable_outfile_to_local=true` in fe.conf first
 
@@ -57,7 +57,7 @@ INTO OUTFILE "file:///home/work/path/result_";
 
 For more usage, see [OUTFILE documentation](../../sql-manual/sql-reference/Data-Manipulation-Statements/OUTFILE.md).
 
-## Concurrent export
+## Concurrent Export
 
 By default, the export of the query result set is non-concurrent, that is, a single point of export. If the user wants the query result set to be exported concurrently, the following conditions need to be met:
 
@@ -104,11 +104,11 @@ Planning example for concurrent export:
 +-----------------------------------------------------------------------------+
 ```
 
-## Usage example
+## Usage Example
 
 For details, please refer to [OUTFILE Document](../../sql-manual/sql-reference/Data-Manipulation-Statements/OUTFILE.md).
 
-## Return result
+## Return Result
 
 The command is a synchronization command. The command returns, which means the operation is over.
 At the same time, a row of results will be returned to show the exported execution result.

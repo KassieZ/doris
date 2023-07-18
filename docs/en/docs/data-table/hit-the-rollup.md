@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Rollup and query",
+    "title": "Rollup and Query",
     "language": "en"
 }
 ---
@@ -130,7 +130,7 @@ Doris automatically hits the ROLLUP table.
 
 Because the Duplicate model has no aggregate semantics. So the ROLLLUP in this model has lost the meaning of "scroll up". It's just to adjust the column order to hit the prefix index. In the next section, we will introduce prefix index in [data model prefix index](./data-model.md), and how to use ROLLUP to change prefix index in order to achieve better query efficiency.
 
-## ROLLUP adjusts prefix index
+## ROLLUP Adjusts Prefix Index
 
 Because column order is specified when a table is built, there is only one prefix index for a table. This may be inefficient for queries that use other columns that cannot hit prefix indexes as conditions. Therefore, we can manually adjust the order of columns by creating ROLLUP. Examples are given.
 
@@ -371,7 +371,7 @@ SELECT * FROM test WHERE k4 < 1000 AND k5 = 80 OR k6 >= 10000;
 
 The query here cannot hit the prefix index. (Even any Min/Max in the Doris storage engine, the BloomFilter index doesn't work.)
 
-### Aggregate data
+### Aggregate Data
 
 Of course, the function of aggregated data is indispensable for general polymer views. Such materialized views are very helpful for aggregated queries or report queries. To hit the polymer views, the following prerequisites are needed:
 

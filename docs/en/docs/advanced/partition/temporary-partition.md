@@ -1,6 +1,6 @@
 ---
 {
-    "title": "Temporary partition",
+    "title": "Temporary Partition",
     "language": "en"
 }
 ---
@@ -24,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Temporary partition
+# Temporary Partition
 
 Since version 0.12, Doris supports temporary partitioning.
 
@@ -36,11 +36,11 @@ A temporary partition belongs to a partitioned table. Only partitioned tables ca
 * The partition ranges of all temporary partitions of a table cannot overlap, but the ranges of temporary partitions and formal partitions can overlap.
 * The partition name of the temporary partition cannot be the same as the formal partitions and other temporary partitions.
 
-## Supported operations
+## Supported Operations
 
 The temporary partition supports add, delete, and replace operations.
 
-### Add temporary partition
+### Add Temporary Partition
 
 You can add temporary partitions to a table with the `ALTER TABLE ADD TEMPORARY PARTITION` statement:
 
@@ -70,7 +70,7 @@ Some instructions for adding operations:
 * Adding a temporary partition is similar to adding a formal partition. The partition range of the temporary partition is independent of the formal partition.
 * Temporary partition can independently specify some attributes. Includes information such as the number of buckets, the number of replicas, or the storage medium.
 
-### Delete temporary partition
+### Delete Temporary Partition
 
 A table's temporary partition can be dropped with the `ALTER TABLE DROP TEMPORARY PARTITION` statement:
 
@@ -84,7 +84,7 @@ Some instructions for the delete operation:
 
 * Deleting the temporary partition will not affect the data of the formal partition.
 
-### Replace partition
+### Replace Partition
 
 You can replace formal partitions of a table with temporary partitions with the `ALTER TABLE REPLACE PARTITION` statement.
 
@@ -204,7 +204,7 @@ Some instructions for the replacement operation:
 
 * After the partition is replaced successfully, the replaced partition will be deleted and cannot be recovered.
 
-## Load and query of temporary partitions
+## Load and Query of Temporary Partitions
 
 Users can load data into temporary partitions or specify temporary partitions for querying.
 
@@ -253,7 +253,7 @@ Users can load data into temporary partitions or specify temporary partitions fo
     WHERE ...;
     ```
 
-## Relationship to other operations
+## Relationship to Other Operations
 
 ### DROP
 
@@ -273,16 +273,16 @@ Users can load data into temporary partitions or specify temporary partitions fo
 * You cannot add temporary partitions to a table while the table is undergoing a alter operation.
 
 
-## Best Practices
+## Best Practice
 
 1. Atomic overwrite
 
     In some cases, the user wants to be able to rewrite the data of a certain partition, but if it is dropped first and then loaded, there will be a period of time when the data cannot be seen. At this moment, the user can first create a corresponding temporary partition, load new data into the temporary partition, and then replace the original partition atomically through the `REPLACE` operation to achieve the purpose. For atomic overwrite operations of non-partitioned tables, please refer to [Replace Table Document](../../advanced/alter-table/replace-table.md)
-    
+
 2. Modify the number of buckets
 
     In some cases, the user used an inappropriate number of buckets when creating a partition. The user can first create a temporary partition corresponding to the partition range and specify a new number of buckets. Then use the `INSERT INTO` command to load the data of the formal partition into the temporary partition. Through the replacement operation, the original partition is replaced atomically to achieve the purpose.
-    
+
 3. Merge or split partitions
 
     In some cases, users want to modify the range of partitions, such as merging two partitions, or splitting a large partition into multiple smaller partitions. Then the user can first create temporary partitions corresponding to the merged or divided range, and then load the data of the formal partition into the temporary partition through the `INSERT INTO` command. Through the replacement operation, the original partition is replaced atomically to achieve the purpose.

@@ -1,7 +1,8 @@
---- 
+---
 {
-    "title": "High-concurrency point query",
+    "title": "High-concurrency Point Query",
     "language": "en"
+
 }
 --- 
 
@@ -24,7 +25,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# High-concurrency point query
+# High-concurrency Point Query
 
 <version since="2.0.0"></version>
 
@@ -32,7 +33,7 @@ under the License.
 
 Doris is built on a columnar storage format engine. In high-concurrency service scenarios, users always want to retrieve entire rows of data from the system. However, when tables are wide, the columnar format greatly amplifies random read IO. Doris query engine and planner are too heavy for some simple queries, such as point queries. A short path needs to be planned in the FE's query plan to handle such queries. FE is the access layer service for SQL queries, written in Java. Parsing and analyzing SQL also leads to high CPU overhead for high-concurrency queries. To solve these problems, we have introduced row storage, short query path, and PreparedStatement in Doris. Below is a guide to enable these optimizations.
 
-## Row Store format
+## Row Store Format
 
 We support a row format for olap table to reduce point lookup io cost,
 but to enable this format, you need to spend more disk space for row format store.
@@ -43,7 +44,7 @@ users can enable it by adding the following property when create table
 "store_row_column" = "true"
 ```
 
-## Accelerate point query for unique model
+## Accelerate Point Query for Unique Model
 
 The above row storage is used to enable the Merge-On-Write strategy under the Unique model to reduce the IO overhead during enumeration. When `enable_unique_key_merge_on_write` and `store_row_column` are enabled when creating a Unique table, the query of the primary key will take a short path to optimize SQL execution, and only one RPC is required to complete the query. The following is an example of enabling the Merge-On-Write strategy under the Unique model by combining the query and row existence:
 
@@ -69,7 +70,8 @@ PROPERTIES (
 );
 ```
 
-**Note:**
+**Notes:**
+
 1. `enable_unique_key_merge_on_write` should be enabled, since we need primary key for quick point lookup in storage engine
 2. when condition only contains primary key like `select * from tbl_point_query where key = 123`, such query will go through the short fast path
 3. `light_schema_change` should also been enabled since we rely on `column unique id` of each column when doing a point query.
@@ -100,7 +102,7 @@ resultSet = readStatement.executeQuery();
 ...
 ```
 
-## Enable row cache
+## Enable Row Cache
 Doris has a page-level cache that stores data for a specific column in each page. Therefore, the page cache is a column-based cache. For the row storage mentioned earlier, a row contains data for multiple columns, and the cache may be evicted by large queries, which can reduce the hit rate. To increase the hit rate of the row cache, a separate row cache is introduced, which reuses the LRU cache mechanism in Doris to ensure memory usage. You can enable it by specifying the following BE configuration:
 
 - `disable_storage_row_cache` : Whether to enable the row cache. It is not enabled by default.

@@ -44,7 +44,7 @@ If the `swap` parameter is `true`, after replacement, the data in the table name
 
 If the `swap` parameter is `false`, after replacement, the data in the table named `tbl1` is the data in the original `tbl2` table. The table named `tbl2` is dropped.
 
-## Principle
+## Principles
 
 The replacement table function actually turns the following set of operations into an atomic operation.
 
