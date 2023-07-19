@@ -1,6 +1,6 @@
 ---
 {
-"title": "Bitand",
+"title": "BITAND",
 "language": "en"
 }
 ---

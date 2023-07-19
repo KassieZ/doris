@@ -341,7 +341,7 @@
                                 "sql-manual/sql-functions/date-time-functions/to-date",
                                 "sql-manual/sql-functions/date-time-functions/to-days",
                                 "sql-manual/sql-functions/date-time-functions/time-to-sec",
-                                "sql-manual/sql-functions/date-time-functions/sec_to_time",
+                                "sql-manual/sql-functions/date-time-functions/sec-to-time",
                                 "sql-manual/sql-functions/date-time-functions/extract",
                                 "sql-manual/sql-functions/date-time-functions/makedate",
                                 "sql-manual/sql-functions/date-time-functions/str-to-date",

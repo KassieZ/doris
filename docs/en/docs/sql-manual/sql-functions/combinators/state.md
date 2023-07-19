@@ -1,6 +1,6 @@
 ---
 {
-    "title": "STATE",
+    "title": "AGGREGATE_FUNCTION_STATE",
     "language": "en"
 }
 ---

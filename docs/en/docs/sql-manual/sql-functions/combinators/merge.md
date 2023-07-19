@@ -1,6 +1,6 @@
 ---
 {
-    "title": "MERGE",
+    "title": "AGGREGATE_FUNCTION_MERGE",
     "language": "en"
 }
 ---

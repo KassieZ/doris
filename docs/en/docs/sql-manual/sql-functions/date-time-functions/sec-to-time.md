@@ -1,6 +1,6 @@
 ---
 {
-    "title": "sec_to_time",
+    "title": "SEC_TO_TIME",
     "language": "en"
 }
 ---

@@ -1,6 +1,6 @@
 ---
 {
-"title": "orthogonal_bitmap_union_count",
+"title": "ORTHOGONAL_BITMAP_UNION_COUNT",
 "language": "en"
 }
 ---

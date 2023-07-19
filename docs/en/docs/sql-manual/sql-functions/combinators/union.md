@@ -1,6 +1,6 @@
 ---
 {
-    "title": "UNION",
+    "title": "AGGREGATE_FUNCTION_UNION",
     "language": "en"
 }
 ---

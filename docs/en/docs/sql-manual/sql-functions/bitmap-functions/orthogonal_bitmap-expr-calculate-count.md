@@ -1,6 +1,6 @@
 ---
 {
-"title": "orthogonal_bitmap_expr_calculate_count",
+"title": "ORTHOGONAL_BITMAP_EXPR_CALCULATE_COUNT",
 "language": "en"
 }
 ---

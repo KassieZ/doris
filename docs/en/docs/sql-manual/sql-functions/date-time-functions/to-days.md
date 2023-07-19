@@ -1,6 +1,6 @@
 ---
 {
-    "title": "to_days",
+    "title": "TO_DAYS",
     "language": "en"
 }
 ---
@@ -28,7 +28,7 @@ under the License.
 ### Description
 #### Syntax
 
-`INT TO DAYS`
+`INT TO_DAYS`
 
 
 Days of returning date distance 0000-01-01

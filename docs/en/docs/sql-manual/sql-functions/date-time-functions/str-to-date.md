@@ -1,6 +1,6 @@
 ---
 {
-    "title": "str_to_date",
+    "title": "STR_TO_DATE",
     "language": "en"
 }
 ---
@@ -28,7 +28,7 @@ under the License.
 ### Description
 #### Syntax
 
-`DATETIME STR TWO DATES (VARCHAR STR, VARCHAR format)`
+`DATETIME STR_TO_DATE (VARCHAR STR, VARCHAR format)`
 
 
 Convert STR to DATE type by format specified, if the conversion result does not return NULL. Note that the 'format' parameter specifies the format of the first parameter.
