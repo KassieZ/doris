@@ -150,7 +150,9 @@
                     "type": "category",
                     "label": "Data Cache",
                     "items": [
-                        "advanced/cache/partition-cache"
+                        "advanced/cache/partition-cache-manual",
+                        "advanced/cache/query-cache",
+                        "advanced/cache/sql-cache-manual"
                     ]
                 },
                 "advanced/autobucket",
@@ -173,9 +175,7 @@
                 "advanced/small-file-mgr",
                 "advanced/cold-hot-separation",
                 "advanced/compute-node",
-                "advanced/lateral-view",
-                "advanced/is-being-synced",
-                "advanced/sql-mode"
+                "advanced/lateral-view"
             ]
         },
         {
@@ -205,7 +205,7 @@
             "items": [
                 {
                     "type": "category",
-                    "label": "Multi-catalog",
+                    "label": "Multi Catalog",
                     "items": [
                         "lakehouse/multi-catalog/multi-catalog",
                         "lakehouse/multi-catalog/hive",
@@ -215,8 +215,7 @@
                         "lakehouse/multi-catalog/dlf",
                         "lakehouse/multi-catalog/max-compute",
                         "lakehouse/multi-catalog/es",
-                        "lakehouse/multi-catalog/jdbc",
-                        "lakehouse/multi-catalog/faq-multi-catalog"
+                        "lakehouse/multi-catalog/jdbc"
                     ]
                 },
                 "lakehouse/file",
@@ -249,8 +248,7 @@
                     "items": [
                         "ecosystem/udf/contribute-udf",
                         "ecosystem/udf/remote-user-defined-function",
-                        "ecosystem/udf/java-user-defined-function",
-                        "ecosystem/udf/native-user-defined-function"
+                        "ecosystem/udf/java-user-defined-function"
                     ]
                 },
                 {
@@ -761,21 +759,21 @@
                             "type": "category",
                             "label": "Analytic(Window) Functions",
                             "items": [
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-SUM",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-AVG",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-MAX",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-MIN",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-COUNT",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-RANK",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-DENSE-RANK",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-FIRST-VALUE",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-LAST-VALUE",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-LEAD",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-LAG",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-ROW-NUMBER",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-NTILE",
-                                "sql-manual/sql-functions/window-functions/WINDOW-FUNCTION-WINDOW-FUNNEL"
+                                "sql-manual/sql-functions/window-functions/window-function",
+                                "sql-manual/sql-functions/window-functions/window-function-sum",
+                                "sql-manual/sql-functions/window-functions/window-function-avg",
+                                "sql-manual/sql-functions/window-functions/window-function-max",
+                                "sql-manual/sql-functions/window-functions/window-function-min",
+                                "sql-manual/sql-functions/window-functions/window-function-count",
+                                "sql-manual/sql-functions/window-functions/window-function-rank",
+                                "sql-manual/sql-functions/window-functions/window-function-dense-rank",
+                                "sql-manual/sql-functions/window-functions/window-function-first-value",
+                                "sql-manual/sql-functions/window-functions/window-function-last-value",
+                                "sql-manual/sql-functions/window-functions/window-function-lead",
+                                "sql-manual/sql-functions/window-functions/window-function-lag",
+                                "sql-manual/sql-functions/window-functions/window-function-row-number",
+                                "sql-manual/sql-functions/window-functions/window-function-ntile",
+                                "sql-manual/sql-functions/window-functions/window-function-window-funnel"
                             ]
                         },
                         {
@@ -783,7 +781,13 @@
                             "label": "IP Functions",
                             "items": [
                                 "sql-manual/sql-functions/ip-functions/ipv4-num-to-string",
-                                "sql-manual/sql-functions/ip-functions/inet-ntoa"
+                                "sql-manual/sql-functions/ip-functions/inet-ntoa",
+                                "sql-manual/sql-functions/ip-functions/ipv4-string-to-num",
+                                "sql-manual/sql-functions/ip-functions/inet-aton",
+                                "sql-manual/sql-functions/ip-functions/ipv4-string-to-num-or-default",
+                                "sql-manual/sql-functions/ip-functions/ipv4-string-to-num-or-null",
+                                "sql-manual/sql-functions/ip-functions/ipv6-num-to-string",
+                                "sql-manual/sql-functions/ip-functions/inet6-ntoa"
                             ]
                         },
                         {
@@ -864,7 +868,7 @@
                                 "sql-manual/sql-reference/Database-Administration-Statements/KILL",
                                 "sql-manual/sql-reference/Database-Administration-Statements/ADMIN-REBALANCE-DISK",
                                 "sql-manual/sql-reference/Database-Administration-Statements/ADMIN-CANCEL-REBALANCE-DISK",
-                                "sql-manual/sql-reference/Database-Administration-Statements/enable-feature"
+                                "sql-manual/sql-reference/Database-Administration-Statements/UNSET-VARIABLE"
                             ]
                         },
                         {
@@ -908,9 +912,7 @@
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE-LIKE",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-TABLE-AS-SELECT",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-EXTERNAL-TABLE",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-INDEX",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-JOB",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-VIEW",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-MATERIALIZED-VIEW",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Create/CREATE-FUNCTION",
@@ -942,10 +944,7 @@
                                         "sql-manual/sql-reference/Data-Definition-Statements/Alter/ALTER-RESOURCE",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Alter/ALTER-COLOCATE-GROUP",
                                         "sql-manual/sql-reference/Data-Definition-Statements/Alter/ALTER-WORKLOAD-GROUP",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Alter/ALTER-SQL-BLOCK-RULE",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Alter/PAUSE-JOB",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Alter/RESUME-JOB",
-                                        "sql-manual/sql-reference/Data-Definition-Statements/Alter/STOP-JOB"
+                                        "sql-manual/sql-reference/Data-Definition-Statements/Alter/ALTER-SQL-BLOCK-RULE"
                                     ]
                                 },
                                 {
@@ -1057,8 +1056,6 @@
                                 "sql-manual/sql-reference/Show-Statements/SHOW-TYPECAST",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-FILE",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-GRANTS",
-                                "sql-manual/sql-reference/Show-Statements/SHOW-JOB",
-                                "sql-manual/sql-reference/Show-Statements/SHOW-JOB-TASK",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-LAST-INSERT",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-LOAD-PROFILE",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-LOAD-WARNINGS",
@@ -1072,6 +1069,7 @@
                                 "sql-manual/sql-reference/Show-Statements/SHOW-WHITE-LIST",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-WARNING",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-TABLET",
+                                "sql-manual/sql-reference/Show-Statements/SHOW-TABLETS-BELONG",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-VARIABLES",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-PLUGINS",
                                 "sql-manual/sql-reference/Show-Statements/SHOW-ROLES",
@@ -1174,7 +1172,6 @@
                         "admin-manual/maint-monitor/be-olap-error-code",
                         "admin-manual/maint-monitor/doris-error-code",
                         "admin-manual/maint-monitor/tablet-meta-tool",
-                        "admin-manual/maint-monitor/tablet-restore-tool",
                         "admin-manual/maint-monitor/monitor-alert",
                         "admin-manual/maint-monitor/tablet-local-debug",
                         "admin-manual/maint-monitor/metadata-operation",
@@ -1328,6 +1325,7 @@
             "type": "category",
             "label": "Release notes",
             "items": [
+                "releasenotes/release-2.0.3",
                 "releasenotes/release-2.0.2",
                 "releasenotes/release-2.0.1",
                 "releasenotes/release-2.0.0",
